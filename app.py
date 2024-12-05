@@ -25,8 +25,36 @@ def signup():
         connection.commit()
         return jsonify({"success": "Thank you for Joining"})
 
-    else: # this means POST was not used, show the signup template
-        return jsonify({"error": "Registration Failed, Try again later"})
+# Define the sign in Endpoint
+import pymysql.cursors
+@app.route('/api/signin', methods = ['POST'])
+def signin():
+    if request.method == 'POST':
+         data = request.json
+         email = data['email']
+         password = data['password']  
+         
+         # Connect to DB
+         connection = pymysql.connect(host='localhost', user='root',
+                                        password='',database='ShopBackendAPI')
+         
+         cursor = connection.cursor(pymysql.cursors.DictCursor)
+         sql = "select * from users where email = %s and password = %s"
+         data = (email, password)
+         cursor.execute(sql,data)
+         
+        #  Check how many rows are found
+         count = cursor.rowcount
+         # If rows a zero, Invalid Credentials
+         if count == 0:
+             return jsonify({"message": "Login Failed"})
+         else:
+             # else there is a user, return a message to say login success and all user details
+             user = cursor.fetchone()
+             
+             # Return login success message with user details as a tuple
+             return jsonify({"message": "Login success", "user": user})
+         
 
 
 
