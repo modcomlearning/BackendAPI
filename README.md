@@ -168,7 +168,7 @@ Below is the updated app.py
             
                 # COnnect to DB
                 connection = pymysql.connect(host='localhost', user='root',
-                                                password='',database='ShopBackendAPI')
+                                                password='',database='BackendAPI')
                 # Do insert query
                 cursor = connection.cursor()
                 cursor.execute('insert into users(username,email,password)values(%s,%s,%s)',
@@ -197,16 +197,16 @@ In below requests we use http://127.0.0.1:5000/api/signup as the endpoint, we us
 
 
 JSON Body
+
     {
         "username": "Tom",
         "email": "tom@gmail.com",
-        "password": "123456"
+        "password": "123456",
+        "phone": "0755XXXXXX"
     }
 Output
 
-![Alt text](image-3.png)
-
-
+![Alt text](image-9.png)
 
 
 ## Step 5: Create a Signin API.
@@ -223,7 +223,7 @@ Below API endpoint will allow users to Signin using credentials provided in /api
             
             # Connect to DB
             connection = pymysql.connect(host='localhost', user='root',
-                                            password='',database='ShopBackendAPI')
+                                            password='',database='BackendAPI')
             
             cursor = connection.cursor(pymysql.cursors.DictCursor)
             sql = "select * from users where email = %s and password = %s"
@@ -264,7 +264,7 @@ Your complete app.py now looks like below.
             
                 # COnnect to DB
                 connection = pymysql.connect(host='localhost', user='root',
-                                                password='',database='ShopBackendAPI')
+                                                password='',database='BackendAPI')
                 # Do insert query
                 cursor = connection.cursor()
                 cursor.execute('insert into users(username,email,password)values(%s,%s,%s)',
@@ -285,7 +285,7 @@ Your complete app.py now looks like below.
                 
                 # Connect to DB
                 connection = pymysql.connect(host='localhost', user='root',
-                                                password='',database='ShopBackendAPI')
+                                                password='',database='BackendAPI')
                 
                 cursor = connection.cursor(pymysql.cursors.DictCursor)
                 sql = "select * from users where email = %s and password = %s"
@@ -306,7 +306,6 @@ Your complete app.py now looks like below.
                 
 
 
-
         # Run the app if this file is executed directly
         if __name__ == '__main__':
             app.run(debug=True)
@@ -316,6 +315,7 @@ Your complete app.py now looks like below.
 
 Test the /ap/signin in Insomnia
 JSON Body
+
     {
         "email": "tom@gmail.com",
         "password": "123456"
@@ -368,7 +368,7 @@ JSON Body
         "land_size": "70000 sq ft",
         "land_owner": "John Dere",
         "plot_no": "NB9876"
-    }
+     }
 
 ![Alt text](image-6.png)
 
@@ -478,6 +478,7 @@ In app.py add below code
 Test in Insomnia
 
 JSON Body
+
     {
         "phone":"254745131917",
         "amount": "1"
@@ -515,6 +516,7 @@ Your Final app.py looks like below
             # we need to make a commit to changes to dbase
             connection.commit()
             return jsonify({"success": "Thank you for Joining"})
+
 
     # Define the sign in Endpoint
     import pymysql.cursors
@@ -660,7 +662,7 @@ Your Final app.py looks like below
         app.run(debug=True)
 
 
-in this Github repo, we created an API for Land Management System for Posting and buying Land,
+In this Github repo, we created an API for Land Management System for Posting and buying Land,
 The application provides an API to signup, signin, add_land, get_lands_details and MPESA payment integration. This API creates the Back - End of our full-stack application.
 
 Above API will be accessed in the Front - End (User Side) by Reacct JS and Android Application.

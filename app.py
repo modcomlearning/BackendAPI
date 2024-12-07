@@ -12,18 +12,20 @@ def signup():
         username = data['username']
         email = data['email']
         password = data['password']
+        phone = data['phone']
      
         # COnnect to DB
         connection = pymysql.connect(host='localhost', user='root',
-                                        password='',database='ShopBackendAPI')
+                                        password='',database='BackendAPI')
         # Do insert query
         cursor = connection.cursor()
-        cursor.execute('insert into users(username,email,password)values(%s,%s,%s)',
-                            (username, email, password))
+        cursor.execute('insert into users(username,email,password, phone)values(%s,%s,%s,%s)',
+                            (username, email, password, phone))
         
         # we need to make a commit to changes to dbase
         connection.commit()
         return jsonify({"success": "Thank you for Joining"})
+
 
 # Define the sign in Endpoint
 import pymysql.cursors
@@ -36,7 +38,7 @@ def signin():
          
          # Connect to DB
          connection = pymysql.connect(host='localhost', user='root',
-                                        password='',database='ShopBackendAPI')
+                                        password='',database='BackendAPI')
          
          cursor = connection.cursor(pymysql.cursors.DictCursor)
          sql = "select * from users where email = %s and password = %s"
@@ -57,7 +59,6 @@ def signin():
          
 
 
-
 # Define the Add Land Endpoint
 @app.route('/api/add_land', methods=['POST'])
 def add_land():
@@ -72,7 +73,7 @@ def add_land():
      
         # Connect to DB
         connection = pymysql.connect(host='localhost', user='root',
-                                        password='', database='ShopBackendAPI')
+                                        password='', database='BackendAPI')
         # Prepare and execute the insert query
         cursor = connection.cursor()
         cursor.execute('INSERT INTO land_details (land_description, land_location, land_cost, land_size, land_owner, plot_no) '
@@ -91,7 +92,7 @@ def add_land():
 def get_land_details():
     # Connect to the database with DictCursor for direct dictionary results
     connection = pymysql.connect(host='localhost', user='root',
-                                    password='', database='ShopBackendAPI')
+                                    password='', database='BackendAPI')
     
     # Create a cursor object and fetch all land details from the land_details table
     cursor = connection.cursor(pymysql.cursors.DictCursor)
