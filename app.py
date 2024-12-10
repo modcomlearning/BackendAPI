@@ -2,7 +2,14 @@ from flask import *
 
 # Create the Flask application instance
 app = Flask(__name__)
+
+
+
+# setup file upload
+import os
+app.config['UPLOAD_FOLDER'] = 'static/images'
 import pymysql
+
 
 # Define the sign up Endpoint
 @app.route('/api/signup', methods = ['POST'])

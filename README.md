@@ -63,8 +63,6 @@ Users Table
         );
 
 
-
-
 ![Alt text](image.png)        
 
 
@@ -85,7 +83,7 @@ Lands Table
 ![Alt text](image-5.png)
 
 
-## Step 2: API Creation Development using Flask_restful.
+## Step 2: API Creation Development using Flask
 What is an API?
 
 API stands for Application Programming Interface. It is a set of rules and protocols that allows different software applications to communicate with each other. APIs define the methods and data formats that applications can use to request and exchange information.
@@ -377,18 +375,10 @@ In app.py add below route to create the API Endpoint
 
 
 Test above in insomnia
-JSON Body
-    
-     {
-        "land_description": "A great farm for growing maize, very warm and fertile",
-        "land_location": "Kahawa, Nairobi, Kenya",
-        "land_cost": 750000,
-        "land_size": "70000 sq ft",
-        "land_owner": "John Dere",
-        "plot_no": "NB9876"
-     }
+When testing above, we will not use JSON, instead we use multipart, in insomnia switch to Multipart Form and provide key and value pairs of your data.
+NB: land_pho must be provided as a File since its an Image.
 
-![Alt text](image-6.png)
+![Alt text](image-10.png)
 
 ## Step 7: Create a View Available Lands  API.
 This endpoint will be used by users to View Posted lands
@@ -679,6 +669,22 @@ Your Final app.py looks like below
     if __name__ == '__main__':
         app.run(debug=True)
 
+
+In order to allow this API be accessible by the Front End system to be created.
+We need to enable CORS.
+Read more on CORS.
+https://blog.postman.com/what-is-cors/
+
+First install CORS in Flask
+
+   pip install flask-cors
+
+Then import CORS and Configure in your app
+   
+   from flask_cors import CORS
+   CORS(app)
+
+You can add above code just below  <b>app = Flask(__name__) </b>
 
 In this Github repo, we created an API for Land Management System for Posting and buying Land,
 The application provides an API to signup, signin, add_land, get_lands_details and MPESA payment integration. This API creates the Back - End of our full-stack application.
