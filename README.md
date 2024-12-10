@@ -43,8 +43,9 @@ Here’s a brief explanation of the tools involved:
 What is XAMPP?
 XAMPP is a software package that provides a simple way to set up a local web server environment. It includes:
 
-    Apache: A web server software to serve your websites.
-    MySQL: A popular database management system used to store data.
+Apache: A web server software to serve your websites.
+MySQL: A popular database management system used to store data.
+
 To Install XAMPP check these Links
 https://www.apachefriends.org/download.html
 
@@ -77,6 +78,8 @@ Lands Table
             land_size VARCHAR(50),                   -- Size of the land as a string (e.g., in square feet, square meters)
             land_owner VARCHAR(255),                 -- Name of the land owner
             plot_no VARCHAR(50)                      -- Plot number of the land
+            land_photo VARCHAR(100)                  -- Photo of the land
+
         );
 
 ![Alt text](image-5.png)
@@ -330,28 +333,43 @@ Output
 
 ## Step 6: Create a Land upload API.
 This endpoint will be used by users in uploading their land details
-in app.py add below route to create the API Endpoint
+First create Folder named static in your Flask folder.
+Inside static create a subfolder named images. (This is where the land photos will be uploaded)
+
+In app.py add below lines to set up Upload directory
+You can place then Just below <b>app = Flask(__name__) </b>
+
+    # setup file upload
+    import os
+    app.config['UPLOAD_FOLDER'] = 'static/images'
+
+
+In app.py add below route to create the API Endpoint
 
     # Define the Add Land Endpoint
     @app.route('/api/add_land', methods=['POST'])
     def add_land():
         if request.method == 'POST':
-            data = request.json
-            land_description = data['land_description']
-            land_location = data['land_location']
-            land_cost = data['land_cost']
-            land_size = data['land_size']
-            land_owner = data['land_owner']
-            plot_no = data['plot_no']
+            # data = request.json
+            land_description = request.form['land_description']
+            land_location = request.form['land_location']
+            land_cost = request.form['land_cost']
+            land_size = request.form['land_size']
+            land_owner = request.form['land_owner']
+            plot_no = request.form['plot_no']
+            photo = request.files['land_photo']
+            filename = photo.filename
+            photo_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            photo.save(photo_path)
         
             # Connect to DB
             connection = pymysql.connect(host='localhost', user='root',
-                                            password='', database='ShopBackendAPI')
+                                            password='', database='BackendAPI')
             # Prepare and execute the insert query
             cursor = connection.cursor()
-            cursor.execute('INSERT INTO land_details (land_description, land_location, land_cost, land_size, land_owner, plot_no) '
-                        'VALUES (%s, %s, %s, %s, %s, %s)',
-                        (land_description, land_location, land_cost, land_size, land_owner, plot_no))
+            cursor.execute('INSERT INTO land_details (land_description, land_location, land_cost, land_size, land_owner, plot_no, land_photo) '
+                        'VALUES (%s, %s, %s, %s, %s, %s, %s)',
+                        (land_description, land_location, land_cost, land_size, land_owner, plot_no, filename))
             
             # Commit the changes to the database
             connection.commit()
@@ -383,7 +401,7 @@ Check more JSON Array > https://justpaste.it/gxpd9
     def get_land_details():
         # Connect to the database with DictCursor for direct dictionary results
         connection = pymysql.connect(host='localhost', user='root',
-                                        password='', database='ShopBackendAPI')
+                                        password='', database='BackendAPI')
         
         # Create a cursor object and fetch all land details from the land_details table
         cursor = connection.cursor(pymysql.cursors.DictCursor)
@@ -507,7 +525,7 @@ Your Final app.py looks like below
         
             # COnnect to DB
             connection = pymysql.connect(host='localhost', user='root',
-                                            password='',database='ShopBackendAPI')
+                                            password='',database='BackendAPI')
             # Do insert query
             cursor = connection.cursor()
             cursor.execute('insert into users(username,email,password)values(%s,%s,%s)',
@@ -529,7 +547,7 @@ Your Final app.py looks like below
             
             # Connect to DB
             connection = pymysql.connect(host='localhost', user='root',
-                                            password='',database='ShopBackendAPI')
+                                            password='',database='BackendAPI')
             
             cursor = connection.cursor(pymysql.cursors.DictCursor)
             sql = "select * from users where email = %s and password = %s"
@@ -565,7 +583,7 @@ Your Final app.py looks like below
         
             # Connect to DB
             connection = pymysql.connect(host='localhost', user='root',
-                                            password='', database='ShopBackendAPI')
+                                            password='', database='BackendAPI')
             # Prepare and execute the insert query
             cursor = connection.cursor()
             cursor.execute('INSERT INTO land_details (land_description, land_location, land_cost, land_size, land_owner, plot_no) '
@@ -584,7 +602,7 @@ Your Final app.py looks like below
     def get_land_details():
         # Connect to the database with DictCursor for direct dictionary results
         connection = pymysql.connect(host='localhost', user='root',
-                                        password='', database='ShopBackendAPI')
+                                        password='', database='BackendAPI')
         
         # Create a cursor object and fetch all land details from the land_details table
         cursor = connection.cursor(pymysql.cursors.DictCursor)

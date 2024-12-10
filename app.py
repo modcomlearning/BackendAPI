@@ -63,22 +63,26 @@ def signin():
 @app.route('/api/add_land', methods=['POST'])
 def add_land():
     if request.method == 'POST':
-        data = request.json
-        land_description = data['land_description']
-        land_location = data['land_location']
-        land_cost = data['land_cost']
-        land_size = data['land_size']
-        land_owner = data['land_owner']
-        plot_no = data['plot_no']
+        # data = request.json
+        land_description = request.form['land_description']
+        land_location = request.form['land_location']
+        land_cost = request.form['land_cost']
+        land_size = request.form['land_size']
+        land_owner = request.form['land_owner']
+        plot_no = request.form['plot_no']
+        photo = request.files['land_photo']
+        filename = photo.filename
+        photo_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        photo.save(photo_path)
      
         # Connect to DB
         connection = pymysql.connect(host='localhost', user='root',
                                         password='', database='BackendAPI')
         # Prepare and execute the insert query
         cursor = connection.cursor()
-        cursor.execute('INSERT INTO land_details (land_description, land_location, land_cost, land_size, land_owner, plot_no) '
-                       'VALUES (%s, %s, %s, %s, %s, %s)',
-                       (land_description, land_location, land_cost, land_size, land_owner, plot_no))
+        cursor.execute('INSERT INTO land_details (land_description, land_location, land_cost, land_size, land_owner, plot_no, land_photo) '
+                       'VALUES (%s, %s, %s, %s, %s, %s, %s)',
+                       (land_description, land_location, land_cost, land_size, land_owner, plot_no, filename))
         
         # Commit the changes to the database
         connection.commit()
