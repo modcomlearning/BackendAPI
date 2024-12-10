@@ -80,7 +80,7 @@ Lands Table
 
         );
 
-![Alt text](image-5.png)
+![Alt text](image-11.png)
 
 
 ## Step 2: API Creation Development using Flask
