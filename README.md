@@ -677,12 +677,12 @@ https://blog.postman.com/what-is-cors/
 
 First install CORS in Flask
 
-   pip install flask-cors
+        pip install flask-cors
 
 Then import CORS and Configure in your app
    
-   from flask_cors import CORS
-   CORS(app)
+        from flask_cors import CORS
+        CORS(app)
 
 You can add above code just below  <b>app = Flask(__name__) </b>
 
