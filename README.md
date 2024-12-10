@@ -90,9 +90,9 @@ API stands for Application Programming Interface. It is a set of rules and proto
 
 In the context of web development:
 
-    An API allows a frontend (like a website or mobile app) to interact with a backend server.
-    The backend exposes various endpoints that the frontend can send requests to (like fetching product data, registering a user, or processing payments).
-    APIs typically use HTTP methods like GET (retrieve data), POST (send data), PUT (update data), and DELETE (remove data).
+An API allows a frontend (like a website or mobile app) to interact with a backend server.
+The backend exposes various endpoints that the frontend can send requests to (like fetching product data, registering a user, or processing payments).
+APIs typically use HTTP methods like GET (retrieve data), POST (send data), PUT (update data), and DELETE (remove data).
 
 For example, our shopping app will have an API to handle user registration, login, and retrieving land listings etc.
 
