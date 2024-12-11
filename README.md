@@ -162,12 +162,11 @@ Below is the updated app.py
         @app.route('/api/signup', methods = ['POST'])
         def signup():
             if request.method =='POST':
-                data = request.json
-                username = data['username']
-                email = data['email']
-                password = data['password']
+                username = request.form['username']
+                email = request.form['email']
+                password = request.form['password']
             
-                # COnnect to DB
+                # Connect to DB
                 connection = pymysql.connect(host='localhost', user='root',
                                                 password='',database='BackendAPI')
                 # Do insert query
@@ -197,17 +196,7 @@ NB: In insomnia create a New Folder to store requests (Also rename your requests
 In below requests we use http://127.0.0.1:5000/api/signup as the endpoint, we use POST and the body is exactly as they are defined in our /api/signup Endpoint request variables.
 
 
-JSON Body
-
-    {
-        "username": "Tom",
-        "email": "tom@gmail.com",
-        "password": "123456",
-        "phone": "0755XXXXXX"
-    }
-Output
-
-![Alt text](image-9.png)
+![Alt text](image-12.png)
 
 
 ## Step 5: Create a Signin API.
@@ -258,10 +247,9 @@ Your complete app.py now looks like below.
         @app.route('/api/signup', methods = ['POST'])
         def signup():
             if request.method =='POST':
-                data = request.json
-                username = data['username']
-                email = data['email']
-                password = data['password']
+                username = request.form['username']
+                email = request.form['email']
+                password = request.form['password']
             
                 # COnnect to DB
                 connection = pymysql.connect(host='localhost', user='root',
@@ -280,9 +268,8 @@ Your complete app.py now looks like below.
         @app.route('/api/signin', methods = ['POST'])
         def signin():
             if request.method == 'POST':
-                data = request.json
-                email = data['email']
-                password = data['password']  
+                email = request.form['email']
+                password = request.form['password']  
                 
                 # Connect to DB
                 connection = pymysql.connect(host='localhost', user='root',
@@ -313,20 +300,7 @@ Your complete app.py now looks like below.
 
 
 
-
-Test the /ap/signin in Insomnia
-JSON Body
-
-    {
-        "email": "tom@gmail.com",
-        "password": "123456"
-    }
-
-
-
-Output
-
-![Alt text](image-4.png)
+![Alt text](image-13.png)
 
 
 ## Step 6: Create a Land upload API.
@@ -433,9 +407,8 @@ In app.py add below code
     @app.route('/api/mpesa_payment', methods=['POST'])
     def mpesa_payment():
         if request.method == 'POST':
-            data = request.json
-            phone = data['phone']
-            amount =data['amount']
+            amount = request.form['amount']
+            phone = request.form['phone']
             # GENERATING THE ACCESS TOKEN
             # create an account on safaricom daraja
             consumer_key = "GTWADFxIpUfDoNikNGqq1C3023evM6UH"
@@ -485,16 +458,7 @@ In app.py add below code
 
 Test in Insomnia
 
-JSON Body
-
-    {
-        "phone":"254745131917",
-        "amount": "1"
-    }
-
-Output
-
-![Alt text](image-8.png)
+![Alt text](image-14.png)
 
 Your Final app.py looks like below
 
@@ -502,18 +466,22 @@ Your Final app.py looks like below
 
     # Create the Flask application instance
     app = Flask(__name__)
+    # setup file upload
+    import os
+    app.config['UPLOAD_FOLDER'] = 'static/images'
+
     import pymysql
 
     # Define the sign up Endpoint
     @app.route('/api/signup', methods = ['POST'])
     def signup():
         if request.method =='POST':
-            data = request.json
-            username = data['username']
-            email = data['email']
-            password = data['password']
+            username = request.form['username']
+            email = request.form['email']
+            password = request.form['password']
+            phone = request.form['phone']
         
-            # COnnect to DB
+            # Connect to DB
             connection = pymysql.connect(host='localhost', user='root',
                                             password='',database='BackendAPI')
             # Do insert query
@@ -531,9 +499,8 @@ Your Final app.py looks like below
     @app.route('/api/signin', methods = ['POST'])
     def signin():
         if request.method == 'POST':
-            data = request.json
-            email = data['email']
-            password = data['password']  
+            email = request.form['email']
+            password = request.form['password'] 
             
             # Connect to DB
             connection = pymysql.connect(host='localhost', user='root',
@@ -563,22 +530,26 @@ Your Final app.py looks like below
     @app.route('/api/add_land', methods=['POST'])
     def add_land():
         if request.method == 'POST':
-            data = request.json
-            land_description = data['land_description']
-            land_location = data['land_location']
-            land_cost = data['land_cost']
-            land_size = data['land_size']
-            land_owner = data['land_owner']
-            plot_no = data['plot_no']
+            # data = request.json
+            land_description = request.form['land_description']
+            land_location = request.form['land_location']
+            land_cost = request.form['land_cost']
+            land_size = request.form['land_size']
+            land_owner = request.form['land_owner']
+            plot_no = request.form['plot_no']
+            photo = request.files['land_photo']
+            filename = photo.filename
+            photo_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            photo.save(photo_path)
         
             # Connect to DB
             connection = pymysql.connect(host='localhost', user='root',
                                             password='', database='BackendAPI')
             # Prepare and execute the insert query
             cursor = connection.cursor()
-            cursor.execute('INSERT INTO land_details (land_description, land_location, land_cost, land_size, land_owner, plot_no) '
-                        'VALUES (%s, %s, %s, %s, %s, %s)',
-                        (land_description, land_location, land_cost, land_size, land_owner, plot_no))
+            cursor.execute('INSERT INTO land_details (land_description, land_location, land_cost, land_size, land_owner, plot_no, land_photo) '
+                        'VALUES (%s, %s, %s, %s, %s, %s, %s)',
+                        (land_description, land_location, land_cost, land_size, land_owner, plot_no, filename))
             
             # Commit the changes to the database
             connection.commit()
@@ -616,9 +587,8 @@ Your Final app.py looks like below
     @app.route('/api/mpesa_payment', methods=['POST'])
     def mpesa_payment():
         if request.method == 'POST':
-            data = request.json
-            phone = data['phone']
-            amount =data['amount']
+            amount = request.form['amount']
+            phone = request.form['phone']
             # GENERATING THE ACCESS TOKEN
             # create an account on safaricom daraja
             consumer_key = "GTWADFxIpUfDoNikNGqq1C3023evM6UH"

@@ -15,11 +15,10 @@ import pymysql
 @app.route('/api/signup', methods = ['POST'])
 def signup():
     if request.method =='POST':
-        data = request.json
-        username = data['username']
-        email = data['email']
-        password = data['password']
-        phone = data['phone']
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        phone = request.form['phone']
      
         # COnnect to DB
         connection = pymysql.connect(host='localhost', user='root',
@@ -39,9 +38,9 @@ import pymysql.cursors
 @app.route('/api/signin', methods = ['POST'])
 def signin():
     if request.method == 'POST':
-         data = request.json
-         email = data['email']
-         password = data['password']  
+         email = request.form['email']
+         password = request.form['password']
+    
          
          # Connect to DB
          connection = pymysql.connect(host='localhost', user='root',
@@ -127,9 +126,8 @@ from requests.auth import HTTPBasicAuth
 @app.route('/api/mpesa_payment', methods=['POST'])
 def mpesa_payment():
     if request.method == 'POST':
-        data = request.json
-        phone = data['phone']
-        amount =data['amount']
+        amount = request.form['amount']
+        phone = request.form['phone']
         # GENERATING THE ACCESS TOKEN
         # create an account on safaricom daraja
         consumer_key = "GTWADFxIpUfDoNikNGqq1C3023evM6UH"
