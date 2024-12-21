@@ -16,8 +16,9 @@ The Flask backend serves as the API layer, providing several key functions:
 
 The database stores the essential information for the application:
 
-    Users Table: Contains user details (name, email, password).
-    Lands Table: Stores land details like name, description, price, and location.
+Users Table: Contains user details (name, email, password).
+Lands Table: Stores land details like name, description, price, and location.
+
 
 4. MPESA Payment Integration
 
@@ -26,13 +27,11 @@ The database stores the essential information for the application:
 
 
 
-Technologies Used
-
+<b>Technologies Used</b>
 Frontend: React JS for building the user interface and interacting with the Flask API.
 Backend: Flask for handling user authentication, managing land, and processing MPESA payments.
 Database: MySQL for storing user and doctors information.
 Payment: MPESA API for handling mobile money payments.
-
 
 
 ## Step 1: Creating MySQL Database.
@@ -136,11 +135,8 @@ Popularity: Flask is extremely popular and in high demand, largely due to its us
     Flask’s popularity is reflected in the job market. Many companies look for developers who are proficient in Python and frameworks like Flask for building scalable, high-performance backend systems.
     Since Flask is a widely-used framework in Python web development, demand for Flask skills is high in many sectors, including startups, tech companies, and enterprise software.
 
-Conclusion:
-
+<b>Conclusion</b>:
 Flask is popular and in demand primarily due to its use of Python, one of the most loved and versatile programming languages. Its simplicity, flexibility, and ability to integrate well with modern tools have made it a go-to framework for developers building everything from simple web apps to advanced systems. Whether you're building APIs, microservices, or integrating machine learning models, Flask's growing popularity and demand in the tech industry make it an excellent choice for backend development.
-
-
 
 
 ## Step 2: API Creation Development using Flask
@@ -179,8 +175,6 @@ Inside app.py write below code.
         # Run the app if this file is executed directly
         if __name__ == '__main__':
             app.run(debug=True)
-
-
 
 
 
@@ -698,6 +692,7 @@ Your Final app.py looks like below
             print(response.text)
             return jsonify({"message": "Please Complete Payment in Your Phone and we will deliver in minutes"})
         
+
     # Run the app if this file is executed directly
     if __name__ == '__main__':
         app.run(debug=True)
