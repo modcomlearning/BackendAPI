@@ -220,7 +220,16 @@ Below is the updated app.py
             app.run(debug=True)
 
 
-RUn your flask app, The above api can be accessed through  http://127.0.0.1:5000/api/signup   ,  http://127.0.0.1:5000/being the base url and api/signup  is the specific endpoints your API resource.
+RUn your flask app, The above api can be accessed through  http://127.0.0.1:5000/api/signup   ,  http://127.0.0.1:5000/being the <b>base url</b> and <b>api/signup</b>  is the specific endpoints your API resource.
+
+
+<b>Explanation </b> <br/>
+This code defines a sign-up endpoint (/api/signup) for handling POST requests.<br/>
+
+1. Request handling: It extracts the username, email, password, and phone from the form data submitted in the POST request.<br/>
+2. Database connection: It connects to a MySQL database (BackendAPI) using pymysql and creates a cursor to execute the SQL query that inserts user data into the users table.<br/>
+3. Commit changes: The transaction is committed to save the data in the database.<br/>
+4. Response: It returns a JSON response with a success message: "Thank you for Joining".<br/><br/>
 
 
 Test above api in Insomnia.
