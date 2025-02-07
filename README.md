@@ -1,6 +1,6 @@
 ### A Full-Stack Lands Management System (Buy or Sell) with Flask, MySQL, React JS, and MPESA Payment Integration
 
-In this Module, You will creating a Complete Full-Stack Land (Selling and Buying System) management application(LMS) built with Flask for the backend, MySQL for the database, and React JS for the frontend. The application allows users to register, log in, browse products, upload products and make payments via MPESA, a popular mobile money service. Here’s how each component functions in the system.
+In this Module, You will be creating a Complete Full-Stack Land (Selling and Buying System) management application(LMS) built with Flask for the backend, MySQL for the database, and React JS for the frontend. The application allows users to register, log in, browse products, upload products and make payments via MPESA, a popular mobile money service. Here’s how each component functions in the system.
 
 The Flask backend serves as the Backend layer, providing several key functions:
 
@@ -36,22 +36,21 @@ Payment: MPESA API for handling mobile money payments.
 
 ## Step 1: Creating MySQL Database.
 To build a shopping system with Flask and MySQL, the first step is to create a MySQL database. The database will store important data such as user information (names, emails, passwords) and product details (names, descriptions, prices, quantities).
+<br/>
+Please check our Book4 for SQL Database Setup and Guide.
 
-Here’s a brief explanation of the tools involved:
+<br/>
+<br/>
+<b><h3>NB: Use your Existing Database</h3></b>
+<br/><br/>
 
-What is XAMPP?
-XAMPP is a software package that provides a simple way to set up a local web server environment. It includes:
-
-Apache: A web server software to serve your websites.
-MySQL: A popular database management system used to store data.
-
-To Install XAMPP check these Links
-https://www.apachefriends.org/download.html
+In Your Database Create below two tables; <br/>
+1. users  -  used to store our system users<br/>
+2. land_details - used to store land details/information 
+<br/>
 
 
-After XAMPP installation, Create a Database named "BackendAPI" and create two tables below are SQL for creating the Tables. NB: You can use your existing Class Database
-
-Users Table
+<b>Users Table</b>
 
         CREATE TABLE users (
             user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -65,7 +64,7 @@ Users Table
 ![Alt text](image.png)        
 
 
-Lands Table
+<b>Lands Table</b>
        
       CREATE TABLE land_details (
             land_id INT AUTO_INCREMENT PRIMARY KEY,  -- Unique identifier for each land entry
@@ -79,27 +78,27 @@ Lands Table
         );
 
 ![Alt text](image-11.png)
-
+<br/>
 Now that we have a Database with Tables, Next step is to create a Python Application to interact with this Database.
-
+<br/>
 ## Step 1-1: Flask Framework
 Flask is a popular web framework for building web applications in Python. It's designed to be simple, lightweight, and flexible, making it a great choice for developers who are learning web development. Here's an introduction to Flask.
 
 <b>Key Features of Flask: </b>
 
-Easy to Use: Flask is friendly due to its design and minimal setup. You can start building a web application with just a few lines of code. Flask is a good choice for backend development when creating advanced applications.
+<b>Easy to Use:</b> Flask is friendly due to its design and minimal setup. You can start building a web application with just a few lines of code. Flask is a good choice for backend development when creating advanced applications.
 
-Python-Based: Since Flask is a Python framework, if you are familiar with Python, you will find it relatively easy to get started. Flask allows you to focus on building the logic and features of your app rather than dealing with complex configurations.
+<b>Python-Based:</b> Since Flask is a Python framework, if you are familiar with Python, you will find it relatively easy to get started. Flask allows you to focus on building the logic and features of your app rather than dealing with complex configurations.
 
-Routing: One of the most important features of Flask is routing, which allows you to map specific URLs to Python functions. For example, you can define a route for your homepage (/), and when someone visits your website, Flask will call the corresponding function to show the page.
+<b>Routing:</b> One of the most important features of Flask is routing, which allows you to map specific URLs to Python functions. For example, you can define a route for your homepage (/), and when someone visits your website, Flask will call the corresponding function to show the page.
 
-Development Server: Flask comes with a built-in development server that makes testing and debugging applications easier. It automatically reloads when you make changes to the code.
+<b>Development Server:</b> Flask comes with a built-in development server that makes testing and debugging applications easier. It automatically reloads when you make changes to the code.
 
-Extensible: Flask can be extended with many plugins to handle more complex tasks, such as database integration (using SQLAlchemy), form validation, authentication, and more.
+<b>Extensible:</b> Flask can be extended with many plugins to handle more complex tasks, such as database integration (using SQLAlchemy), form validation, authentication, and more.
 
-Security: It provides many tools and best practices that you can use to build secure web applications.
+<b>Security: </b> It provides many tools and best practices that you can use to build secure web applications.
 
-Popularity: Flask is extremely popular and in high demand, largely due to its use of Python, one of the most widely used and loved programming languages in the world. Here’s why Flask’s popularity is growing, and why it's in demand:
+<b>Popularity: </b> Flask is extremely popular and in high demand, largely due to its use of Python, one of the most widely used and loved programming languages in the world. Here’s why Flask’s popularity is growing, and why it's in demand:
 
 
 <b>Conclusion</b>:
@@ -109,24 +108,26 @@ Flask is popular and in demand primarily due to its use of Python, one of the mo
 ## Step 2: API Creation Development using Flask
 What is an API?
 
-API stands for Application Programming Interface. It is a set of rules that allows different software applications to communicate with each other. APIs define the methods and data formats that applications can use to request and exchange information.
+API stands for Application Programming Interface. It allows different software applications to communicate with each other. APIs define the functions to exchange information between back end and front end.
 
-In the context of web development:
+<b>In the context of web development:</b>
 
 An API allows a frontend (like a website or mobile app) to interact with a backend server.
-The backend exposes various endpoints that the frontend can send requests to (like fetching product data, registering a user, or processing payments).
-APIs typically use HTTP methods like GET (retrieve data), POST (send data), PUT (update data), and DELETE (remove data).
+The backend exposes various links or endpoints that the frontend can send requests to (like fetching product data, registering a user, or processing payments).
 
-For example, our Lands system will have an API to handle user registration, login, and retrieving land listings etc.
+
+For example, our Lands system will have an API to handle user registration, login, add  product and retrieving land listings etc.  Lets Do it Practically!
+<br/>
 
 
 ## Step 3: Setting Up Flask restful
-Install Flask if you haven't already:
+Install Flask module if you haven't installed already:
    
      pip install flask
 
 
-Create a New Folder(Create a Class Folder this Project), inside this folder, create below flask app structure.
+Create a New Folder(Create a Class Folder for this Project), inside this folder, create a Python File named app.py 
+<br/>
 Inside app.py write below code.
 
         from flask import *
@@ -143,6 +144,15 @@ Inside app.py write below code.
         if __name__ == '__main__':
             app.run(debug=True)
 
+<br/><br/>
+<b>Explanation</b> <br/>
+This code creates a basic Flask web application.<br/>
+
+1. app = Flask(__name__): Initializes the Flask app.<br/>
+2. @app.route('/signup'): Defines a route for the /signup URL.<br/>
+3. def signup(): The function that returns the message "Welcome to sign Up API!" when the /signup route is accessed.<br/>
+4. if __name__ == '__main__': Ensures the app runs only when the script is executed directly, not when imported as a module.<br/>
+5. app.run(debug=True): Starts the development server with debugging enabled.<br/><br/>
 
 
 Test this code in Insomnia -  Insomnia is a popular, open-source API client used for testing, debugging, and interacting with RESTful APIs.
