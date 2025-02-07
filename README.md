@@ -1,8 +1,8 @@
 ### A Full-Stack Lands Management System (Buy or Sell) with Flask, MySQL, React JS, and MPESA Payment Integration
 
-This is a full-stack Land (Selling and Buying System) management application built with Flask for the backend, MySQL for the database, and React JS for the frontend. The application allows users to register, log in, browse products, and make payments via MPESA, a popular mobile money service. Here’s how each component functions in the system.
+In this Module, You will creating a Complete Full-Stack Land (Selling and Buying System) management application(LMS) built with Flask for the backend, MySQL for the database, and React JS for the frontend. The application allows users to register, log in, browse products, upload products and make payments via MPESA, a popular mobile money service. Here’s how each component functions in the system.
 
-The Flask backend serves as the API layer, providing several key functions:
+The Flask backend serves as the Backend layer, providing several key functions:
 
 2. Backend (Flask)
 
@@ -76,10 +76,11 @@ Lands Table
             land_owner VARCHAR(255),                 -- Name of the land owner
             plot_no VARCHAR(50)                      -- Plot number of the land
             land_photo VARCHAR(100)                  -- Photo of the land
-
         );
 
 ![Alt text](image-11.png)
+
+Now that we have a Database with Tables, Next step is to create a Python Application to interact with this Database.
 
 ## Step 1-1: Flask Framework
 Flask is a popular web framework for building web applications in Python. It's designed to be simple, lightweight, and flexible, making it a great choice for developers who are learning web development. Here's an introduction to Flask.
@@ -100,40 +101,6 @@ Security: It provides many tools and best practices that you can use to build se
 
 Popularity: Flask is extremely popular and in high demand, largely due to its use of Python, one of the most widely used and loved programming languages in the world. Here’s why Flask’s popularity is growing, and why it's in demand:
 
-
-1. Popularity of Python:
-
-    Python's Versatility: Python is known for its simplicity, readability, and vast ecosystem of libraries and frameworks. It's used in many domains such as web development, data science, machine learning, automation, and AI. Flask benefits directly from Python’s popularity, as it leverages Python’s ease of use and powerful features.
-    Large Developer Community: Python has one of the largest and most active developer communities. This means that Flask, being a Python-based framework, also benefits from extensive community support, tutorials, and resources, making it easier for developers to learn and implement.
-
-2. Lightweight and Flexible:
-
-    Flask’s minimalistic design, which comes from Python’s philosophy of simplicity and clarity, makes it highly attractive for developers. It doesn’t impose a lot of restrictions, allowing developers to build anything from small apps to complex systems.
-    Flask is highly customizable and can be easily extended with third-party libraries, making it a go-to choice for projects that require flexibility. This lightweight nature is one of the reasons it’s so popular for web development, especially among developers who need to quickly prototype and build scalable applications.
-
-3. Demand for Web Development Frameworks:
-
-    As the demand for web applications and APIs continues to grow, Flask is increasingly in demand as a framework for building these systems. Flask’s simplicity, combined with Python's power, makes it an ideal choice for backend development.
-    RESTful APIs are especially in demand due to the rise of mobile applications and single-page applications (SPAs) that rely on APIs for communication. Flask is commonly used to build APIs due to its flexibility and ease of use, making it a popular choice in industries like tech, finance, and healthcare.
-
-4. Integration with Modern Tools and Technologies:
-
-    Flask integrates well with modern tools and technologies. Whether you are using front-end JavaScript frameworks like React, Vue, or Angular, or need to deploy applications in cloud environments like AWS, Google Cloud, or Heroku, Flask’s Python ecosystem makes it easier to integrate and scale applications. This makes it even more appealing to developers who work with full-stack development.
-
-5. Increased Use in Startups and Tech Companies:
-
-    Flask’s simplicity and quick development cycle make it a popular choice for startups and small teams that need to rapidly develop web applications and MVPs (Minimum Viable Products). Many tech companies favor Flask due to its ease of setup and ability to handle both simple and advanced use cases.
-    Flask is also used by large organizations and enterprises for their microservices architecture, providing flexibility and performance without the overhead of a larger framework.
-
-6. Python in Data Science and Machine Learning:
-
-    The rise of data science and machine learning has boosted Python’s popularity significantly. Flask is often used to serve machine learning models or integrate with data pipelines because it’s easy to create APIs that expose models or data-driven insights to other applications.
-    Flask’s popularity is also linked to the increased demand for AI-driven applications in industries like finance, healthcare, and e-commerce, where Python-based tools (and Flask as a web framework) are crucial to deploying models into production.
-
-7. Industry Demand:
-
-    Flask’s popularity is reflected in the job market. Many companies look for developers who are proficient in Python and frameworks like Flask for building scalable, high-performance backend systems.
-    Since Flask is a widely-used framework in Python web development, demand for Flask skills is high in many sectors, including startups, tech companies, and enterprise software.
 
 <b>Conclusion</b>:
 Flask is popular and in demand primarily due to its use of Python, one of the most loved and versatile programming languages. Its simplicity, flexibility, and ability to integrate well with modern tools have made it a go-to framework for developers building everything from simple web apps to advanced systems. Whether you're building APIs, microservices, or integrating machine learning models, Flask's growing popularity and demand in the tech industry make it an excellent choice for backend development.
@@ -170,12 +137,11 @@ Inside app.py write below code.
         # Define a simple route
         @app.route('/signup')
         def signup():
-            return "Welcome to sign Up route!"
+            return "Welcome to sign Up API!"
 
         # Run the app if this file is executed directly
         if __name__ == '__main__':
             app.run(debug=True)
-
 
 
 
