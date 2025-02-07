@@ -1,5 +1,5 @@
 ### A Full-Stack Lands Management System (Buy or Sell) with Flask, MySQL, React JS, and MPESA Payment Integration
-
+<b>Introduction</b> <br/>
 In this Module, You will be creating a Complete Full-Stack Land (Selling and Buying System) management application(LMS) built with Flask for the backend, MySQL for the database, and React JS for the frontend. The application allows users to register, log in, browse products, upload products and make payments via MPESA, a popular mobile money service. Here’s how each component functions in the system.
 
 The Flask backend serves as the Backend layer, providing several key functions:
