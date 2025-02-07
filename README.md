@@ -136,7 +136,7 @@ Inside app.py write below code.
         app = Flask(__name__)
 
         # Define a simple route
-        @app.route('/signup')
+        @app.route('/api/signup')
         def signup():
             return "Welcome to sign Up API!"
 
@@ -156,11 +156,12 @@ This code creates a basic Flask web application.<br/>
 
 
 Test this code in Insomnia -  Insomnia is a popular, open-source API client used for testing, debugging, and interacting with RESTful APIs.
+<br/>
+Use http://127.0.0.1:5000/api/signup  while Testing in insomnia <br/>
 
 Output
 
-![Alt text](image-2.png)
-
+![alt text](image-15.png)
 
 Done, we have already done and tested our first API
 
