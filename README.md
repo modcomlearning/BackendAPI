@@ -406,7 +406,7 @@ Test above in insomnia
 
 NB: product_photo must be provided as a File since its an Image.
 
-![alt text](image-22.png)
+![alt text](image-28.png)
 
 ## Step 7: Create a Get Products  API.
 This endpoint will be used by users to View Posted products
@@ -435,9 +435,9 @@ In app.py add below route to create the API Endpoint.
 
 
 Test in Insmnia
-In below image shows a JSON Array showing several products displayed
+In below image shows a Dictionary - JSON Array showing several products displayed
 Output
-![alt text](image-23.png)
+![alt text](image-27.png)
 
 
 ## Step 8: Making an MPESA Payment API.
@@ -509,10 +509,10 @@ In app.py add below code
             return jsonify({"message": "Please Complete Payment in Your Phone and we will deliver in minutes"})
 
 
-Test in Insomnia
+Test in Insomnia <br/>
 
-![Alt text](image-14.png)
-
+![alt text](image-29.png)
+<br>
 Your Final app.py looks like below
     
     # THIS IS AN API FOR Ecommerce Backend
