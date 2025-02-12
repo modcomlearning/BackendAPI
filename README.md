@@ -28,7 +28,7 @@ Product Table: Stores products details like name, description, price, and photo.
 
     Payment Initiation: After selecting products, the user is asked to pay via MPESA. The backend sends a request to MPESA API with payment details.
 
-<br><br>
+<br>
 <b>Technologies Used</b>
 Frontend: React JS for building the user interface and interacting with the Flask API.
 Backend: Flask for handling user authentication, managing producrs, and processing MPESA payments.
@@ -176,10 +176,10 @@ Output
 
 ![alt text](image-15.png)
 
-Done, we have already done and tested our first API
+Done, we have tested our first API
 ![alt text](image-18.png)
 <br>
-
+<br>
 ## Step 4: Create a SignUp API.
 When you refer to signup, it typically means the process where users register their details to create an account on a website or application. During the signup process, users provide certain information (e.g., username, email, password) that is stored in the system to uniquely identify them and allow them to access features of the application.
 
