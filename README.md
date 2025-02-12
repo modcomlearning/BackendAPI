@@ -83,7 +83,9 @@ In Your Database Create below two tables; <br/>
 <br/>
 Now that we have a Database with Tables, Next step is to create a Python Application to interact with this Database.
 <br/>
+
 ## Step 1-1: Flask Framework
+
 Flask is a popular web framework for building web applications in Python. It's designed to be simple, lightweight, and flexible, making it a great choice for developers who are learning web development. Here's an introduction to Flask.
 
 <b>Key Features of Flask: </b>
