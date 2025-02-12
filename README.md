@@ -122,8 +122,8 @@ The backend exposes various links or endpoints that the frontend can send reques
 
 
 ![alt text](image-17.png)
-
-
+<br>
+In this Module we do the Backend using Python and SQL<br>
 For example, our E-commerce Web Application will have an API to handle user registration, login, add  product and retrieving Products listings etc.  Lets Do it Practically!
 <br/>
 
