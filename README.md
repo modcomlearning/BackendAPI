@@ -5,6 +5,8 @@ We will Call This Application <h3><b>SOKOGARDEN</b></h3>
 <br>
 This E-Commerce Web Application is a website where people can buy and sell products online, The application is inspired by growing web applications such Jumia, Kilimall, Alibaba, and Jiji. It Allows users to create account(Signup), Sign in Sell Products, Buy Products, Browse Products, Make MPESA Payment etc.
 <br><br>
+DEMO the Web Application<br>
+Link : https://sokogarden.vercel.app  <br>
 
 The Flask backend serves as the Backend layer, providing several key functions:
 
