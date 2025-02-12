@@ -247,7 +247,7 @@ NB: In insomnia create a New Folder to store requests (Also rename your requests
 In below requests we use http://127.0.0.1:5000/api/signup as the endpoint, we use POST and the body is exactly as they are defined in our /api/signup Endpoint request variables.
 
 
-![Alt text](image-12.png)
+![alt text](image-24.png)
 
 
 ## Step 5: Create a Signin API.
@@ -258,9 +258,9 @@ Below API endpoint will allow users to Signin using credentials provided in /api
     @app.route('/api/signin', methods = ['POST'])
     def signin():
         if request.method == 'POST':
-            data = request.json
-            email = data['email']
-            password = data['password']  
+            # Extract POST data
+            email = request.form['email']
+            password = request.form['password']
             
             # Connect to DB
             connection = pymysql.connect(host='localhost', user='root',
@@ -351,8 +351,8 @@ Your complete app.py now looks like below.
             app.run(debug=True)
 
 
-
-![Alt text](image-13.png)
+Test Signin insomnia.<br/> use http://127.0.0.1:5000/api/signin  as Endpoint <br>
+![alt text](image-26.png)
 
 
 ## Step 6: Create a Product upload API.
@@ -406,7 +406,7 @@ Test above in insomnia
 
 NB: product_photo must be provided as a File since its an Image.
 
-![alt text](image-20.png)
+![alt text](image-22.png)
 
 ## Step 7: Create a Get Products  API.
 This endpoint will be used by users to View Posted products
@@ -437,7 +437,7 @@ In app.py add below route to create the API Endpoint.
 Test in Insmnia
 In below image shows a JSON Array showing several products displayed
 Output
-![alt text](image-21.png)
+![alt text](image-23.png)
 
 
 ## Step 8: Making an MPESA Payment API.
