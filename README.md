@@ -1,8 +1,8 @@
 ### A Full-Stack E-commerce (Buy or Sell Products) with Flask, MySQL, React JS, and MPESA Payment Integration
 <b>Introduction</b> <br/>
 In this Module, You will be creating a Complete Full-Stack commerce Web Application(Selling and Buying System)  built with Flask for the backend, MySQL for the database, and React JS for the frontend.
-We will Call This Application <h4><b>SOKOGARDEN</b></h4>
-<br><br>
+We will Call This Application <h3><b>SOKOGARDEN</b></h3>
+<br>
 This E-Commerce Web Application is a website where people can buy and sell products online, The application is inspired by growing web applications such Jumia, Kilimall, Alibaba, and Jiji. It Allows users to create account(Signup), Sign in Sell Products, Buy Products, Browse Products, Make MPESA Payment etc.
 <br><br>
 
