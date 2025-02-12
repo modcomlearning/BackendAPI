@@ -723,7 +723,7 @@ The application provides an API to signup, signin, add_product, get_product_deta
 
 Above API will be accessed in the Front - End (User Side) by React JS and Android Application. <br>
 
-Next is FrontEnd Development using React JS and later Android Apps. <br>
-Check this link for updated Frontend Documentation.
+Next is FrontEnd Development using Javascript, React JS.  <br>
+Check this link for updates on Frontend Documentation.
 
-Happy Coding!
+<h3>Happy Coding! </h3>
