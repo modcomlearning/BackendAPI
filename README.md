@@ -356,9 +356,9 @@ Your complete app.py now looks like below.
 
 
 ## Step 6: Create a Product upload API.
-This endpoint will be used by users in uploading their land details
+This endpoint will be used by users in uploading their products details
 First create Folder named static in your Flask folder.
-Inside static create a subfolder named images. (This is where the land photos will be uploaded)
+Inside static create a subfolder named images. (This is where the products photos will be uploaded)
 
 In app.py add below lines to set up Upload directory where our products image will be uploaded <br>
 You can place then Just below <b>app = Flask(__name__) </b>
@@ -408,8 +408,8 @@ NB: product_photo must be provided as a File since its an Image.
 
 ![alt text](image-20.png)
 
-## Step 7: Create a View Available Lands  API.
-This endpoint will be used by users to View Posted lands
+## Step 7: Create a Get Products  API.
+This endpoint will be used by users to View Posted products
 In app.py add below route to create the API Endpoint.
 
     # Define the Get Product Details Route/Endpoint
@@ -441,7 +441,7 @@ Output
 
 
 ## Step 8: Making an MPESA Payment API.
-The API Endpoint below will be used for any payment to be done in our land Management System.
+The API Endpoint below will be used for any payment to be done in our E-commerce Web Application.
 We will use MPESA Daraja Intergration. Please check https://developer.safaricom.co.ke/
 
 
