@@ -1,52 +1,53 @@
-### A Full-Stack Lands Management System (Buy or Sell) with Flask, MySQL, React JS, and MPESA Payment Integration
+### A Full-Stack E-commerce (Buy or Sell Products) with Flask, MySQL, React JS, and MPESA Payment Integration
 <b>Introduction</b> <br/>
-In this Module, You will be creating a Complete Full-Stack Land (Selling and Buying System) management application(LMS) built with Flask for the backend, MySQL for the database, and React JS for the frontend. The application allows users to register, log in, browse products, upload products and make payments via MPESA, a popular mobile money service. Here’s how each component functions in the system.
+In this Module, You will be creating a Complete Full-Stack commerce Web Application(Selling and Buying System)  built with Flask for the backend, MySQL for the database, and React JS for the frontend.
+We will Call This Application <h4><b>SOKOGARDEN</b></h4>
+<br><br>
+This E-Commerce Web Application is a website where people can buy and sell products online, The application is inspired by growing web applications such Jumia, Kilimall, Alibaba, and Jiji. It Allows users to create account(Signup), Sign in Sell Products, Buy Products, Browse Products, Make MPESA Payment etc.
+<br><br>
 
 The Flask backend serves as the Backend layer, providing several key functions:
 
 2. Backend (Flask)
 
-    User Authentication: The backend handles user registration and login, storing users’ details (like emails and hashed passwords) in the MySQL database.
+    User Authentication: The backend handles user registration and login, storing users’ details (like emails and passwords) in the MySQL database.
      
-    Land Management: The application retrieves land details from the MySQL database, including land location, price, owner details, plot No, etc and send it to the frontend for buyers to see the details. It also handles user signup, signin, land addition, land search and view, and payment processing.
+    Product Management: The application retrieves product details from the MySQL database, including product_name, description , cost, photo etc and send it to the frontend for buyers to see the details. It also handles user signup, signin, product addition, product search and view, and payment processing.
 
-    MPESA Payment: When users are ready to pay, the backend interacts with the MPESA API to initiate and confirm mobile payments. Once the payment is complete, the backend updates product stock if necessary.
+    MPESA Payment: When users are ready to pay, the backend interacts with the MPESA API to initiate and confirm mobile payments.
 
 3. Database (MySQL)
 
 The database stores the essential information for the application:
 
 Users Table: Contains user details (name, email, password).
-Lands Table: Stores land details like name, description, price, and location.
-
+Product Table: Stores products details like name, description, price, and photo.
+<br>
 
 4. MPESA Payment Integration
 
     Payment Initiation: After selecting products, the user is asked to pay via MPESA. The backend sends a request to MPESA API with payment details.
-    Payment Confirmation: MPESA sends a callback to confirm whether the payment was successful. If successful, the backend updates product availability and notifies the user.
 
-
-
+<br><br>
 <b>Technologies Used</b>
 Frontend: React JS for building the user interface and interacting with the Flask API.
-Backend: Flask for handling user authentication, managing land, and processing MPESA payments.
+Backend: Flask for handling user authentication, managing producrs, and processing MPESA payments.
 Database: MySQL for storing user and doctors information.
 Payment: MPESA API for handling mobile money payments.
 
-
+### THIS REPO CREATES THE BACKEND ONLY
 ## Step 1: Creating MySQL Database.
 To build a shopping system with Flask and MySQL, the first step is to create a MySQL database. The database will store important data such as user information (names, emails, passwords) and product details (names, descriptions, prices, quantities).
 <br/>
 Please check our Book4 for SQL Database Setup and Guide.
 
 <br/>
-<br/>
 <b><h3>NB: Use your Existing Database</h3></b>
-<br/><br/>
+<br/>
 
 In Your Database Create below two tables; <br/>
 1. users  -  used to store our system users<br/>
-2. land_details - used to store land details/information 
+2. product_details - used to store product details/information 
 <br/>
 
 
@@ -64,20 +65,19 @@ In Your Database Create below two tables; <br/>
 ![Alt text](image.png)        
 
 
-<b>Lands Table</b>
+<b>Products Table</b>
        
-      CREATE TABLE land_details (
-            land_id INT AUTO_INCREMENT PRIMARY KEY,  -- Unique identifier for each land entry
-            land_description TEXT,                   -- Description of the land
-            land_location VARCHAR(255),              -- Location of the land
-            land_cost INT,                           -- Cost of the land as an integer (no decimal places)
-            land_size VARCHAR(50),                   -- Size of the land
-            land_owner VARCHAR(255),                 -- Name of the land owner
-            plot_no VARCHAR(50)                      -- Plot number of the land
-            land_photo VARCHAR(100)                  -- Photo of the land
+       CREATE TABLE product_details (
+            product_id INT AUTO_INCREMENT PRIMARY KEY,
+            product_name VARCHAR(255) NOT NULL,
+            product_description TEXT,
+            product_cost INT,
+            product_photo VARCHAR(255)
         );
 
-![Alt text](image-11.png)
+
+![alt text](image-16.png)
+
 <br/>
 Now that we have a Database with Tables, Next step is to create a Python Application to interact with this Database.
 <br/>
@@ -108,25 +108,35 @@ Flask is popular and in demand primarily due to its use of Python, one of the mo
 ## Step 2: API Creation Development using Flask
 What is an API?
 
-API stands for Application Programming Interface. It allows different software applications to communicate with each other. APIs define the functions to exchange information between back end and front end.
+API stands for Application Programming Interface. It allows different software applications to communicate with each other. APIs define the functions to exchange information between back end and front end. <br>
 
-<b>In the context of web development:</b>
+API stands for Application Programming Interface:  <br>
 
+<b>A (Application)</b> – A software program or system that performs specific tasks.<br>
+<b>P (Programming) </b> – The process of writing code to create program .<br>
+<b>I (Interface) </b> – A point of interaction that allows different applications to communicate with each other.<br>
+
+<b>In the context of web development:</b> <br>
 An API allows a frontend (like a website or mobile app) to interact with a backend server.
 The backend exposes various links or endpoints that the frontend can send requests to (like fetching product data, registering a user, or processing payments).
 
 
-For example, our Lands system will have an API to handle user registration, login, add  product and retrieving land listings etc.  Lets Do it Practically!
+![alt text](image-17.png)
+
+
+For example, our E-commerce Web Application will have an API to handle user registration, login, add  product and retrieving Products listings etc.  Lets Do it Practically!
 <br/>
 
 
-## Step 3: Setting Up Flask restful
+
+## Step 3: Setting Up Flask
 Install Flask module if you haven't installed already:
    
      pip install flask
 
 
-Create a New Folder(Create a Class Folder for this Project), inside this folder, create a Python File named app.py 
+Create a New Folder(Create a Class Folder for this Project), inside this folder, create a Python File named app.py. <br/>
+In this File we create our API (Application Programming Interface)
 <br/>
 Inside app.py write below code.
 
@@ -135,7 +145,7 @@ Inside app.py write below code.
         # Create the Flask application instance
         app = Flask(__name__)
 
-        # Define a simple route
+        # Define a simple route/Endpoint
         @app.route('/api/signup')
         def signup():
             return "Welcome to sign Up API!"
@@ -155,17 +165,20 @@ This code creates a basic Flask web application.<br/>
 5. app.run(debug=True): Starts the development server with debugging enabled.<br/><br/>
 
 
-Test this code in Insomnia -  Insomnia is a popular, open-source API client used for testing, debugging, and interacting with RESTful APIs.
+Test this code in Insomnia -  Insomnia is a popular, open-source API client used for testing, debugging, and interacting with APIs.
 <br/>
-Use http://127.0.0.1:5000/api/signup  while Testing in insomnia <br/>
+The API running at http://127.0.0.1:5000/   <br/>
+For us to access the Signup Route we write it in this format http://127.0.0.1:5000/api/signup <br>
+
+Use http://127.0.0.1:5000/api/signup  while Testing your API in insomnia <br/>
 
 Output
 
 ![alt text](image-15.png)
 
 Done, we have already done and tested our first API
-
-
+![alt text](image-18.png)
+<br>
 
 ## Step 4: Create a SignUp API.
 When you refer to signup, it typically means the process where users register their details to create an account on a website or application. During the signup process, users provide certain information (e.g., username, email, password) that is stored in the system to uniquely identify them and allow them to access features of the application.
@@ -190,7 +203,6 @@ Below is the updated app.py
         app = Flask(__name__)
         import pymysql
 
-        # Define the sign up Endpoint
         # Define the sign up Endpoint
         @app.route('/api/signup', methods = ['POST'])
         def signup():
@@ -219,8 +231,7 @@ Below is the updated app.py
             app.run(debug=True)
 
 
-RUn your flask app, The above api can be accessed through  http://127.0.0.1:5000/api/signup   ,  http://127.0.0.1:5000/being the <b>base url</b> and <b>api/signup</b>  is the specific endpoints your API resource.
-
+RUn your flask app, The above api can be accessed through  http://127.0.0.1:5000/api/signup   <br>
 
 <b>Explanation </b> <br/>
 This code defines a sign-up endpoint (/api/signup) for handling POST requests.<br/>
@@ -255,6 +266,7 @@ Below API endpoint will allow users to Signin using credentials provided in /api
             connection = pymysql.connect(host='localhost', user='root',
                                             password='',database='BackendAPI')
             
+            # Create a cursor to return results a dictionary
             cursor = connection.cursor(pymysql.cursors.DictCursor)
             sql = "select * from users where email = %s and password = %s"
             data = (email, password)
@@ -262,18 +274,18 @@ Below API endpoint will allow users to Signin using credentials provided in /api
             
             #  Check how many rows are found
             count = cursor.rowcount
-            # If rows a zero, Invalid Credentials
+            # If rows a zero, Invalid Credentials - No user Found
             if count == 0:
                 return jsonify({"message": "Login Failed"})
             else:
                 # else there is a user, return a message to say login success and all user details
                 user = cursor.fetchone()
                 
-                # Return login success message with user details as a tuple
+                # Return login success message with user details as a dictionary
                 return jsonify({"message": "Login Success", "user": user})
 
 
-NB: Above we imported import pymysql.cursors  and used in the cursor cursor = connection.cursor(pymysql.cursors.DictCursor), this will help in returning the user details in a Key Value representation.
+NB: Above we imported import pymysql.cursors  and used in the cursor cursor = connection.cursor(pymysql.cursors.DictCursor), this will help in returning the user details in a Key Value representation or a Dictionary
 
 Your complete app.py now looks like below.
 
@@ -343,12 +355,12 @@ Your complete app.py now looks like below.
 ![Alt text](image-13.png)
 
 
-## Step 6: Create a Land upload API.
+## Step 6: Create a Product upload API.
 This endpoint will be used by users in uploading their land details
 First create Folder named static in your Flask folder.
 Inside static create a subfolder named images. (This is where the land photos will be uploaded)
 
-In app.py add below lines to set up Upload directory
+In app.py add below lines to set up Upload directory where our products image will be uploaded <br>
 You can place then Just below <b>app = Flask(__name__) </b>
 
     # setup file upload
@@ -358,73 +370,74 @@ You can place then Just below <b>app = Flask(__name__) </b>
 
 In app.py add below route to create the API Endpoint
 
-    # Define the Add Land Endpoint
-    @app.route('/api/add_land', methods=['POST'])
-    def add_land():
+    # Define the Add Product Route/Endpoint
+    @app.route('/api/add_product', methods=['POST'])
+    def add_product():
         if request.method == 'POST':
-            # data = request.json
-            land_description = request.form['land_description']
-            land_location = request.form['land_location']
-            land_cost = request.form['land_cost']
-            land_size = request.form['land_size']
-            land_owner = request.form['land_owner']
-            plot_no = request.form['plot_no']
-            photo = request.files['land_photo']
+            # Extract POST Data
+            product_name = request.form['product_name']
+            product_description = request.form['product_description']
+            product_cost = request.form['product_cost']
+            # Extract image data
+            photo = request.files['product_photo']
+            # Get the image file name
             filename = photo.filename
+            # SPecify where the image will be saved (in static Folder) - Image Path
             photo_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            # Save your image
             photo.save(photo_path)
-        
+
             # Connect to DB
             connection = pymysql.connect(host='localhost', user='root',
-                                            password='', database='BackendAPI')
+                                            password='',database='BackendAPI')
             # Prepare and execute the insert query
             cursor = connection.cursor()
-            cursor.execute('INSERT INTO land_details (land_description, land_location, land_cost, land_size, land_owner, plot_no, land_photo) '
-                        'VALUES (%s, %s, %s, %s, %s, %s, %s)',
-                        (land_description, land_location, land_cost, land_size, land_owner, plot_no, filename))
-            
+            cursor.execute('INSERT INTO product_details (product_name, product_description, product_cost, product_photo) '
+                        'VALUES (%s, %s, %s, %s)',
+                        (product_name, product_description, product_cost,  filename))
+
             # Commit the changes to the database
             connection.commit()
-            return jsonify({"success": "Land details added successfully"})
+            # Return success message in Dictionary Format
+            return jsonify({"success": "Product details added successfully"})
 
 
 Test above in insomnia
-When testing above, we will not use JSON, instead we use multipart, in insomnia switch to Multipart Form and provide key and value pairs of your data.
-NB: land_pho must be provided as a File since its an Image.
 
-![Alt text](image-10.png)
+NB: product_photo must be provided as a File since its an Image.
+
+![alt text](image-20.png)
 
 ## Step 7: Create a View Available Lands  API.
 This endpoint will be used by users to View Posted lands
 In app.py add below route to create the API Endpoint.
 
-Check more JSON Array > https://justpaste.it/gxpd9
+    # Define the Get Product Details Route/Endpoint
+    import pymysql.cursors
+    @app.route('/api/get_product_details', methods=['GET'])
+    def get_product_details():
 
-    # Define the Get Land Details Endpoint
-    @app.route('/api/get_land_details', methods=['GET'])
-    def get_land_details():
         # Connect to the database with DictCursor for direct dictionary results
         connection = pymysql.connect(host='localhost', user='root',
-                                        password='', database='BackendAPI')
-        
-        # Create a cursor object and fetch all land details from the land_details table
+                                            password='',database='BackendAPI')
+
+        # Create a cursor object and fetch all products details from the products_details table
         cursor = connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('SELECT * FROM land_details')
-        land_details = cursor.fetchall()
-        
+        cursor.execute('SELECT * FROM product_details')
+        product_details = cursor.fetchall()
+
         # Close the database connection
         connection.close()
-        
-        # Return the land details directly as JSON
-        return jsonify(land_details)
+
+        # Return the products details directly as a dictionay - JSON
+        return jsonify(product_details)
 
 
 
 Test in Insmnia
-In below image shows a JSON Array showing several lands displayed
+In below image shows a JSON Array showing several products displayed
 Output
-
-![Alt text](image-7.png)
+![alt text](image-21.png)
 
 
 ## Step 8: Making an MPESA Payment API.
@@ -501,18 +514,20 @@ Test in Insomnia
 ![Alt text](image-14.png)
 
 Your Final app.py looks like below
-
+    
+    # THIS IS AN API FOR Ecommerce Backend
     from flask import *
 
     # Create the Flask application instance
     app = Flask(__name__)
+
     # setup file upload
     import os
     app.config['UPLOAD_FOLDER'] = 'static/images'
-
     import pymysql
 
-    # Define the sign up Endpoint
+
+    # Define the sign up Route/Endpoint
     @app.route('/api/signup', methods = ['POST'])
     def signup():
         if request.method =='POST':
@@ -521,32 +536,34 @@ Your Final app.py looks like below
             password = request.form['password']
             phone = request.form['phone']
         
-            # Connect to DB
+            # COnnect to DB
             connection = pymysql.connect(host='localhost', user='root',
                                             password='',database='BackendAPI')
             # Do insert query
             cursor = connection.cursor()
-            cursor.execute('insert into users(username,email,password)values(%s,%s,%s)',
-                                (username, email, password))
+            cursor.execute('insert into users(username,email,password, phone)values(%s,%s,%s,%s)',
+                                (username, email, password, phone))
             
             # we need to make a commit to changes to dbase
             connection.commit()
             return jsonify({"success": "Thank you for Joining"})
 
 
-    # Define the sign in Endpoint
-    import pymysql.cursors
+    # Define the sign in Route/Endpoint
     @app.route('/api/signin', methods = ['POST'])
     def signin():
         if request.method == 'POST':
+            # Extract POST Data
             email = request.form['email']
-            password = request.form['password'] 
+            password = request.form['password']
+        
             
             # Connect to DB
             connection = pymysql.connect(host='localhost', user='root',
                                             password='',database='BackendAPI')
             
-            cursor = connection.cursor(pymysql.cursors.DictCursor)
+            # Create a Cursor
+            cursor = connection.cursor()
             sql = "select * from users where email = %s and password = %s"
             data = (email, password)
             cursor.execute(sql,data)
@@ -565,60 +582,63 @@ Your Final app.py looks like below
             
 
 
-
-    # Define the Add Land Endpoint
-    @app.route('/api/add_land', methods=['POST'])
-    def add_land():
+    # Define the Add Product Route/Endpoint
+    @app.route('/api/add_product', methods=['POST'])
+    def add_product():
         if request.method == 'POST':
-            # data = request.json
-            land_description = request.form['land_description']
-            land_location = request.form['land_location']
-            land_cost = request.form['land_cost']
-            land_size = request.form['land_size']
-            land_owner = request.form['land_owner']
-            plot_no = request.form['plot_no']
-            photo = request.files['land_photo']
+            # Extract POST Data
+            product_name = request.form['product_name']
+            product_description = request.form['product_description']
+            product_cost = request.form['product_cost']
+            # Extract image data
+            photo = request.files['product_photo']
+            # Get the image file name
             filename = photo.filename
+            # SPecify where the image will be saved (in static Folder) - Image Path
             photo_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            # Save your image
             photo.save(photo_path)
-        
+
             # Connect to DB
             connection = pymysql.connect(host='localhost', user='root',
-                                            password='', database='BackendAPI')
+                                            password='',database='BackendAPI')
             # Prepare and execute the insert query
             cursor = connection.cursor()
-            cursor.execute('INSERT INTO land_details (land_description, land_location, land_cost, land_size, land_owner, plot_no, land_photo) '
-                        'VALUES (%s, %s, %s, %s, %s, %s, %s)',
-                        (land_description, land_location, land_cost, land_size, land_owner, plot_no, filename))
-            
+            cursor.execute('INSERT INTO product_details (product_name, product_description, product_cost, product_photo) '
+                        'VALUES (%s, %s, %s, %s)',
+                        (product_name, product_description, product_cost,  filename))
+
             # Commit the changes to the database
             connection.commit()
-            return jsonify({"success": "Land details added successfully"})
+            # Return success message in Dictionary Format
+            return jsonify({"success": "Product details added successfully"})
 
 
 
 
-    # Define the Get Land Details Endpoint
-    @app.route('/api/get_land_details', methods=['GET'])
-    def get_land_details():
+    # Define the Get Product Details Route/Endpoint
+    import pymysql.cursors
+    @app.route('/api/get_product_details', methods=['GET'])
+    def get_product_details():
+
         # Connect to the database with DictCursor for direct dictionary results
         connection = pymysql.connect(host='localhost', user='root',
-                                        password='', database='BackendAPI')
-        
-        # Create a cursor object and fetch all land details from the land_details table
+                                            password='',database='BackendAPI')
+
+        # Create a cursor object and fetch all products details from the products_details table
         cursor = connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('SELECT * FROM land_details')
-        land_details = cursor.fetchall()
-        
+        cursor.execute('SELECT * FROM product_details')
+        product_details = cursor.fetchall()
+
         # Close the database connection
         connection.close()
-        
-        # Return the land details directly as JSON
-        return jsonify(land_details)
+
+        # Return the products details directly as a dictionay - JSON
+        return jsonify(product_details)
 
 
 
-    # Mpesa Payment Route 
+    # Mpesa Payment Route/Endpoint 
     import requests
     import datetime
     import base64
@@ -679,14 +699,15 @@ Your Final app.py looks like below
     # Run the app if this file is executed directly
     if __name__ == '__main__':
         app.run(debug=True)
+    
 
 
-In order to allow this API be accessible by the Front End system to be created.
-We need to enable CORS.
-Read more on CORS.
-https://blog.postman.com/what-is-cors/
+In order to allow this API be accessible by the Front End system to be created.<br>
+We need to enable CORS.<br>
+Read more on CORS. <br>
+https://blog.postman.com/what-is-cors/ <br><br>
 
-First install CORS in Flask
+First install CORS in Flask. 
 
         pip install flask-cors
 
@@ -697,10 +718,12 @@ Then import CORS and Configure in your app
 
 You can add above code just below  <b>app = Flask(__name__) </b>
 
-In this Github repo, we created an API for Land Management System for Posting and buying Land,
-The application provides an API to signup, signin, add_land, get_lands_details and MPESA payment integration. This API creates the Back - End of our full-stack application.
+In this Github repo, we created an <b>Backend API for E-commerce Web Application</b> <br>
+The application provides an API to signup, signin, add_product, get_product_details and MPESA payment integration. This API creates the Back - End of our full-stack application.
 
-Above API will be accessed in the Front - End (User Side) by Reacct JS and Android Application.
-Next is Front - End Development using React JS and later Android Apps.
+Above API will be accessed in the Front - End (User Side) by React JS and Android Application. <br>
+
+Next is FrontEnd Development using React JS and later Android Apps. <br>
+Check this link for updated Frontend Documentation.
 
 Happy Coding!

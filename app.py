@@ -1,3 +1,4 @@
+ # THIS IS AN API FOR Ecommerce Backend
 from flask import *
 
 # Create the Flask application instance
@@ -9,7 +10,7 @@ app.config['UPLOAD_FOLDER'] = 'static/images'
 import pymysql
 
 
-# Define the sign up Endpoint
+# Define the sign up Route/Endpoint
 @app.route('/api/signup', methods = ['POST'])
 def signup():
     if request.method =='POST':
@@ -31,11 +32,11 @@ def signup():
         return jsonify({"success": "Thank you for Joining"})
 
 
-# Define the sign in Endpoint
-import pymysql.cursors
+# Define the sign in Route/Endpoint
 @app.route('/api/signin', methods = ['POST'])
 def signin():
     if request.method == 'POST':
+         # Extract POST Data
          email = request.form['email']
          password = request.form['password']
     
@@ -44,7 +45,8 @@ def signin():
          connection = pymysql.connect(host='localhost', user='root',
                                         password='',database='BackendAPI')
          
-         cursor = connection.cursor(pymysql.cursors.DictCursor)
+         # Create a Cursor
+         cursor = connection.cursor()
          sql = "select * from users where email = %s and password = %s"
          data = (email, password)
          cursor.execute(sql,data)
@@ -63,59 +65,63 @@ def signin():
          
 
 
-# Define the Add Land Endpoint
-@app.route('/api/add_land', methods=['POST'])
-def add_land():
+# Define the Add Product Route/Endpoint
+@app.route('/api/add_product', methods=['POST'])
+def add_product():
     if request.method == 'POST':
-        # data = request.json
-        land_description = request.form['land_description']
-        land_location = request.form['land_location']
-        land_cost = request.form['land_cost']
-        land_size = request.form['land_size']
-        land_owner = request.form['land_owner']
-        plot_no = request.form['plot_no']
-        photo = request.files['land_photo']
+        # Extract POST Data
+        product_name = request.form['product_name']
+        product_description = request.form['product_description']
+        product_cost = request.form['product_cost']
+        # Extract image data
+        photo = request.files['product_photo']
+        # Get the image file name
         filename = photo.filename
+        # SPecify where the image will be saved (in static Folder) - Image Path
         photo_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        # Save your image
         photo.save(photo_path)
-     
+
         # Connect to DB
         connection = pymysql.connect(host='localhost', user='root',
-                                        password='', database='BackendAPI')
+                                        password='',database='BackendAPI')
         # Prepare and execute the insert query
         cursor = connection.cursor()
-        cursor.execute('INSERT INTO land_details (land_description, land_location, land_cost, land_size, land_owner, plot_no, land_photo) '
-                       'VALUES (%s, %s, %s, %s, %s, %s, %s)',
-                       (land_description, land_location, land_cost, land_size, land_owner, plot_no, filename))
-        
+        cursor.execute('INSERT INTO product_details (product_name, product_description, product_cost, product_photo) '
+                    'VALUES (%s, %s, %s, %s)',
+                    (product_name, product_description, product_cost,  filename))
+
         # Commit the changes to the database
         connection.commit()
-        return jsonify({"success": "Land details added successfully"})
+        # Return success message in Dictionary Format
+        return jsonify({"success": "Product details added successfully"})
 
 
 
 
-# Define the Get Land Details Endpoint
-@app.route('/api/get_land_details', methods=['GET'])
-def get_land_details():
+# Define the Get Product Details Route/Endpoint
+import pymysql.cursors
+@app.route('/api/get_product_details', methods=['GET'])
+def get_product_details():
+
     # Connect to the database with DictCursor for direct dictionary results
     connection = pymysql.connect(host='localhost', user='root',
-                                    password='', database='BackendAPI')
-    
-    # Create a cursor object and fetch all land details from the land_details table
+                                        password='',database='BackendAPI')
+
+    # Create a cursor object and fetch all products details from the products_details table
     cursor = connection.cursor(pymysql.cursors.DictCursor)
-    cursor.execute('SELECT * FROM land_details')
-    land_details = cursor.fetchall()
-    
+    cursor.execute('SELECT * FROM product_details')
+    product_details = cursor.fetchall()
+
     # Close the database connection
     connection.close()
-    
-    # Return the land details directly as JSON
-    return jsonify(land_details)
+
+    # Return the products details directly as a dictionay - JSON
+    return jsonify(product_details)
 
 
 
-# Mpesa Payment Route 
+# Mpesa Payment Route/Endpoint 
 import requests
 import datetime
 import base64
@@ -172,6 +178,7 @@ def mpesa_payment():
         print(response.text)
         return jsonify({"message": "Please Complete Payment in Your Phone and we will deliver in minutes"})
     
+
 # Run the app if this file is executed directly
 if __name__ == '__main__':
     app.run(debug=True)
