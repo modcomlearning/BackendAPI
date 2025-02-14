@@ -54,7 +54,7 @@ In Your Database Create below two tables; <br/>
 
 
 <b>Users Table</b>
-        ``` sql
+
         CREATE TABLE users (
             user_id INT AUTO_INCREMENT PRIMARY KEY,
             username VARCHAR(50) NOT NULL,
@@ -140,7 +140,8 @@ Create a New Folder(Create a Class Folder for this Project), inside this folder,
 In this File we first learn the fundamentals on how create and interact with API (Application Programming Interface). Then we will move to Step 3: Where we create our eCommerce API.
 
 in test.py add this code
-
+    
+    ```python
     from flask import *
 
     # Create the Flask appl
@@ -212,7 +213,7 @@ Output
 ![alt text](image-35.png)
 
 <b>Students Practice</b> <br>
-- Create a route/endpoint named /api/services </br>
+- Create a route/endpoint named /api/services </>
 - Create a function for this route and return a message "W"elcome to Our Services API.
 - Test this endpoint in Insomnia. NB: Create a new request in insomnia.
 <br>
