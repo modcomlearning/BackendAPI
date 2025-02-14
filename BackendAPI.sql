@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 21, 2024 at 01:05 PM
+-- Generation Time: Feb 14, 2025 at 02:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -24,28 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `land_details`
+-- Table structure for table `product_details`
 --
 
-CREATE TABLE `land_details` (
-  `land_id` int(11) NOT NULL,
-  `land_description` text DEFAULT NULL,
-  `land_location` varchar(255) DEFAULT NULL,
-  `land_cost` int(11) DEFAULT NULL,
-  `land_size` varchar(50) DEFAULT NULL,
-  `land_owner` varchar(255) DEFAULT NULL,
-  `plot_no` varchar(50) DEFAULT NULL,
-  `land_photo` varchar(100) NOT NULL
+CREATE TABLE `product_details` (
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_description` text DEFAULT NULL,
+  `product_cost` int(11) DEFAULT NULL,
+  `product_photo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `land_details`
+-- Dumping data for table `product_details`
 --
 
-INSERT INTO `land_details` (`land_id`, `land_description`, `land_location`, `land_cost`, `land_size`, `land_owner`, `plot_no`, `land_photo`) VALUES
-(1, 'A large agricultural plot with fertile soil, suitable for farming.', 'Dallas, Texas, USA', 750000, '20000 sq ft', 'Alice Johnson', 'TX9876', ''),
-(2, 'A great farm for growing maize, very warm and fertile', 'Kahawa, Nairobi, Kenya', 750000, '70000 sq ft', 'John Dere', 'NB9876', ''),
-(3, ' Nice Land', 'Mwiki', 100000, '2 Acres', 'Joseph', 'jhgjh526', 'airo.jpeg');
+INSERT INTO `product_details` (`product_id`, `product_name`, `product_description`, `product_cost`, `product_photo`) VALUES
+(1, 'Kiwi', 'Nice shoe Polish', 100, 'cairo.webp'),
+(2, 'HisenseTV', 'Nice TV for livingroom', 15000, 'image2.jpg'),
+(3, 'Iron Box', 'Good for your clothes', 1000, 'image2.jpg');
 
 -- --------------------------------------------------------
 
@@ -67,17 +64,18 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `email`, `phone`) VALUES
 (1, 'Tom', '123456', 'tom@gmail.com', '0745131971'),
-(2, 'tom', '54556465', 'tom@gmail.com', '0712121212');
+(2, 'tom', '54556465', 'tom@gmail.com', '0712121212'),
+(3, 'John', '12345678', 'john@gmail.com', '254729XXXXX');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `land_details`
+-- Indexes for table `product_details`
 --
-ALTER TABLE `land_details`
-  ADD PRIMARY KEY (`land_id`);
+ALTER TABLE `product_details`
+  ADD PRIMARY KEY (`product_id`);
 
 --
 -- Indexes for table `users`
@@ -90,16 +88,16 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `land_details`
+-- AUTO_INCREMENT for table `product_details`
 --
-ALTER TABLE `land_details`
-  MODIFY `land_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `product_details`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
