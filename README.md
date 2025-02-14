@@ -217,7 +217,7 @@ Output
 
 <b>Students Practice</b> <br>
 - Create a route/endpoint named /api/services </>
-- Create a function for this route and return a message "W"elcome to Our Services API.
+- Create a function for this route and return a message "Welcome to Our Services API" as Key Value Pair.
 - Test this endpoint in Insomnia. NB: Create a new request in insomnia.
 <br>
 
