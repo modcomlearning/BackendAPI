@@ -186,6 +186,7 @@ Output
 
 In test.py add another endpoint  
 
+```python
     from flask import *
 
     # Create the Flask appl
@@ -205,7 +206,7 @@ In test.py add another endpoint
     # Run the app if this file is executed directly
     if __name__ == '__main__':
         app.run(debug=True)
-
+```
 
 Use http://127.0.0.1:5000/api/products  while Testing your API in insomnia, http://127.0.0.1:5000/api/products  is also known an endpoint since its the link we use to reach the API <br/>
 
@@ -224,6 +225,7 @@ In this example we are going to send a request with two numbers to our API endpo
 
 in test.py add the /api/calc Route/endpoint as shown below.
 
+```python
     from flask import *
 
     # Create the Flask appl
@@ -249,7 +251,7 @@ in test.py add the /api/calc Route/endpoint as shown below.
             # Return a dictionary : Key - Value Pairs
             return jsonify({'Answer ': sum})
         
-
+```
     # Run the app if this file is executed directly
     if __name__ == '__main__':
         app.run(debug=True)
@@ -273,6 +275,7 @@ In this File we create our API (Application Programming Interface)
 <br/>
 Inside app.py write below code.
 
+```python
         from flask import *
 
         # Create the Flask application instance
@@ -286,7 +289,7 @@ Inside app.py write below code.
         # Run the app if this file is executed directly
         if __name__ == '__main__':
             app.run(debug=True)
-
+``` 
 <br/><br/>
 <b>Explanation</b> <br/>
 This code creates a basic Flask web application.<br/>
@@ -314,10 +317,6 @@ Done, we have tested our first API
 <br>
 <br>
 
-
-
-
-
 ## Step 4: Create a SignUp API.
 When you refer to signup, it typically means the process where users register their details to create an account on a website or application. During the signup process, users provide certain information (e.g., username, email, password) that is stored in the system to uniquely identify them and allow them to access features of the application.
 
@@ -335,7 +334,7 @@ i.e http://127.0.0.1:5000/api/signup    is an endpoint
 
 Update your /api/signup route as follows.
 Below is the updated app.py
-
+```python
         from flask import *
         # Create the Flask application instance
         app = Flask(__name__)
@@ -367,7 +366,7 @@ Below is the updated app.py
         # Run the app if this file is executed directly
         if __name__ == '__main__':
             app.run(debug=True)
-
+``` 
 
 RUn your flask app, The above api can be accessed through  http://127.0.0.1:5000/api/signup   <br>
 
@@ -392,6 +391,8 @@ In below requests we use http://127.0.0.1:5000/api/signup as the endpoint, we us
 Below API endpoint will allow users to Signin using credentials provided in /api/signup in Step 4 above. Update your app.py by adding an /api/signin route as shown below.
 
 # Define the sign in Endpoint
+
+```python
     import pymysql.cursors
     @app.route('/api/signin', methods = ['POST'])
     def signin():
@@ -422,11 +423,13 @@ Below API endpoint will allow users to Signin using credentials provided in /api
                 # Return login success message with user details as a dictionary
                 return jsonify({"message": "Login Success", "user": user})
 
+```
 
 NB: Above we imported import pymysql.cursors  and used in the cursor cursor = connection.cursor(pymysql.cursors.DictCursor), this will help in returning the user details in a Key Value representation or a Dictionary
 
 Your complete app.py now looks like below.
 
+```python
         from flask import *
 
         # Create the Flask application instance
@@ -488,6 +491,7 @@ Your complete app.py now looks like below.
         if __name__ == '__main__':
             app.run(debug=True)
 
+```
 
 Test Signin insomnia.<br/> use http://127.0.0.1:5000/api/signin  as Endpoint <br>
 ![alt text](image-26.png)
@@ -508,6 +512,7 @@ You can place then Just below <b>app = Flask(__name__) </b>
 
 In app.py add below route to create the API Endpoint
 
+```python
     # Define the Add Product Route/Endpoint
     @app.route('/api/add_product', methods=['POST'])
     def add_product():
@@ -539,6 +544,7 @@ In app.py add below route to create the API Endpoint
             # Return success message in Dictionary Format
             return jsonify({"success": "Product details added successfully"})
 
+```
 
 Test above in insomnia
 
@@ -550,6 +556,7 @@ NB: product_photo must be provided as a File since its an Image.
 This endpoint will be used by users to View Posted products
 In app.py add below route to create the API Endpoint.
 
+```python
     # Define the Get Product Details Route/Endpoint
     import pymysql.cursors
     @app.route('/api/get_product_details', methods=['GET'])
@@ -570,7 +577,7 @@ In app.py add below route to create the API Endpoint.
         # Return the products details directly as a dictionay - JSON
         return jsonify(product_details)
 
-
+```
 
 Test in Insmnia
 In below image shows a Dictionary - JSON Array showing several products displayed
@@ -589,6 +596,7 @@ NB: you will need to install requests if not already installed.
 
 In app.py add below code
 
+```python
     # Mpesa Payment Route 
     import requests
     import datetime
@@ -646,13 +654,15 @@ In app.py add below code
             print(response.text)
             return jsonify({"message": "Please Complete Payment in Your Phone and we will deliver in minutes"})
 
+```
 
 Test in Insomnia <br/>
 
 ![alt text](image-29.png)
 <br>
 Your Final app.py looks like below
-    
+
+```python   
     # THIS IS AN API FOR Ecommerce Backend
     from flask import *
 
@@ -838,6 +848,8 @@ Your Final app.py looks like below
     if __name__ == '__main__':
         app.run(debug=True)
     
+
+```
 
 
 In order to allow this API be accessible by the Front End system to be created.<br>
