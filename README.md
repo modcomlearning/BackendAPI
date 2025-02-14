@@ -142,7 +142,6 @@ In this File we first learn the fundamentals on how create and interact with API
 in test.py add this code
     
     ```python
-    
     from flask import *
 
     # Create the Flask appl
@@ -155,7 +154,7 @@ in test.py add this code
     # Run the app if this file is executed directly
     if __name__ == '__main__':
         app.run(debug=True)
-
+    ```
 
 <b>Explanation</b> <br/>
 This code creates a basic Flask web application.<br/>
