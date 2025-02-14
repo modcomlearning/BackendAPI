@@ -54,7 +54,7 @@ In Your Database Create below two tables; <br/>
 
 
 <b>Users Table</b>
-
+        ``` sql
         CREATE TABLE users (
             user_id INT AUTO_INCREMENT PRIMARY KEY,
             username VARCHAR(50) NOT NULL,
@@ -124,7 +124,6 @@ API stands for Application Programming Interface:  <br>
 An API allows a frontend (like a website or mobile app) to interact with a backend server.
 The backend exposes various links or endpoints that the frontend can send requests to (like fetching product data, registering a user, or processing payments).
 
-
 ![alt text](image-17.png)
 <br>
 In this Module we do the Backend using Python and SQL<br>
@@ -132,12 +131,141 @@ For example, our E-commerce Web Application will have an API to handle user regi
 <br/>
 
 
-
-## Step 3: Setting Up Flask
+## Step 2.1: Setting Up Flask, Testing Routes
 Install Flask module if you haven't installed already:
    
      pip install flask
 
+Create a New Folder(Create a Class Folder for this Project), inside this folder, create a Python File named test.py. <br/>
+In this File we first learn the fundamentals on how create and interact with API (Application Programming Interface). Then we will move to Step 3: Where we create our eCommerce API.
+
+in test.py add this code
+
+    from flask import *
+
+    # Create the Flask appl
+    app = Flask(__name__)
+    # Define a simple route/Endpoint
+    @app.route('/api/home')
+    def home():
+        return jsonify({"message":"Welcome to HOME API!"})
+
+    # Run the app if this file is executed directly
+    if __name__ == '__main__':
+        app.run(debug=True)
+
+
+<b>Explanation</b> <br/>
+This code creates a basic Flask web application.<br/>
+
+1. app = Flask(__name__): Initializes the Flask app.<br/>
+2. @app.route('/api/home'): Defines a route for the /signup URL.<br/>
+3. def home(): The function that returns the message "Welcome to sign Up API!" when the /api/home route is accessed. Each must be attached to a function to give a fuctionality<br/> The message returned uses jsonify to return response in form of a Key Value Pair (Dictionary)
+4. if __name__ == '__main__': Ensures the app runs only when the script is executed directly, not when imported as a module.<br/>
+5. app.run(debug=True): Starts the development server with debugging enabled.<br/><br/>
+
+Test this code in Insomnia -  Insomnia is a popular, open-source API client used for testing, debugging, and interacting with APIs.
+<br/>
+The API running at http://127.0.0.1:5000/   <br/>
+For us to access the Home Route we write it in this format http://127.0.0.1:5000/api/home <br>
+
+Use http://127.0.0.1:5000/api/home  while Testing your API in insomnia, http://127.0.0.1:5000/api/home  is also known an endpoint since its the link we use to reach the API <br/>
+
+NB: Ininsomnia we use GET  -  GET only retrieves data from a server.
+<br>
+There are two types of messages: requests sent by the client to trigger an action on the server, and responses, the answer that the server sends in response to a request.
+
+![alt text](image-32.png)
+
+<br>
+Output
+
+![alt text](image-34.png)
+
+
+In test.py add another endpoint  
+
+    from flask import *
+
+    # Create the Flask appl
+    app = Flask(__name__)
+    # Define a simple route/Endpoint
+    @app.route('/api/home')
+    def home():
+        return jsonify({"message":"Welcome to HOME API!"})
+
+
+    # Define a another simple route/Endpoint
+    @app.route('/api/products')
+    def products():
+        return jsonify({"message":"Welcome to PRODUCTS API!"})
+
+
+    # Run the app if this file is executed directly
+    if __name__ == '__main__':
+        app.run(debug=True)
+
+
+Use http://127.0.0.1:5000/api/products  while Testing your API in insomnia, http://127.0.0.1:5000/api/products  is also known an endpoint since its the link we use to reach the API <br/>
+
+Output
+![alt text](image-35.png)
+
+<b>Students Practice</b> <br>
+- Create a route/endpoint named /api/services </br>
+- Create a function for this route and return a message "W"elcome to Our Services API.
+- Test this endpoint in Insomnia. NB: Create a new request in insomnia.
+<br>
+
+## Step 2.2: Posting variables Request to API and Get Responses
+In this example we are going to send a request with two numbers to our API endpoint named /api/calc , the api will process, add the two numbers and return a response with an answer.
+<br>
+
+in test.py add the /api/calc Route/endpoint as shown below.
+
+    from flask import *
+
+    # Create the Flask appl
+    app = Flask(__name__)
+    # Define a simple route/Endpoint
+    @app.route('/api/home')
+    def home():
+        return jsonify({"message":"Welcome to HOME API!"})
+
+
+    # Define a another simple route/Endpoint
+    @app.route('/api/products')
+    def products():
+        return jsonify({"message":"Welcome to PRODUCTS API!"})
+
+    # Define a another simple route/Endpoint
+    @app.route('/api/calc', methods = ['POST'])
+    def calc():
+        if request.method == 'POST':
+            number1 = request.form['number1']
+            number2 = request.form['number2']
+            sum = int(number1)  + int(number2)
+            # Return a dictionary : Key - Value Pairs
+            return jsonify({'Answer ': sum})
+        
+
+    # Run the app if this file is executed directly
+    if __name__ == '__main__':
+        app.run(debug=True)
+
+Test in Insomnia
+When testing Please choose POST as the method and Form Data to send post the two variables number1 and number2, see below on how to pick form data.
+
+![alt text](image-36.png)
+
+See below image on how to append data to the request, we append number1 and number2 with their respective values. 
+
+The API endpoint we are using to access our calc is http://127.0.0.1:5000/api/calc
+
+Output
+![alt text](image-37.png)
+
+## Step 3: Setting Up Flask App for Our eCommerce Web Application
 
 Create a New Folder(Create a Class Folder for this Project), inside this folder, create a Python File named app.py. <br/>
 In this File we create our API (Application Programming Interface)
@@ -184,6 +312,11 @@ Done, we have tested our first API
 ![alt text](image-18.png)
 <br>
 <br>
+
+
+
+
+
 ## Step 4: Create a SignUp API.
 When you refer to signup, it typically means the process where users register their details to create an account on a website or application. During the signup process, users provide certain information (e.g., username, email, password) that is stored in the system to uniquely identify them and allow them to access features of the application.
 
