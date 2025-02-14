@@ -174,7 +174,7 @@ Use http://127.0.0.1:5000/api/home  while Testing your API in insomnia, http://1
 
 NB: Insomnia we use GET  -  GET only retrieves data from a server.
 <br>
-There are two types of messages: requests sent by the client to trigger an action on the server, and responses, the answer that the server sends in response to a request.
+There are two types of messages: requests sent by the client to trigger an action on the server, and responses, the answer that the server sends back as a response. 
 
 ![alt text](image-32.png)
 
