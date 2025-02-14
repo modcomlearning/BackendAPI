@@ -183,6 +183,8 @@ Output
 
 ![alt text](image-34.png)
 
+Done, we have tested our first API
+![alt text](image-18.png)
 
 In test.py add another endpoint  
 
@@ -251,10 +253,14 @@ in test.py add the /api/calc Route/endpoint as shown below.
             # Return a dictionary : Key - Value Pairs
             return jsonify({'Answer ': sum})
         
-```
+
     # Run the app if this file is executed directly
     if __name__ == '__main__':
         app.run(debug=True)
+```
+<br>
+This Flask route /api/calc handles POST requests. It takes two numbers from the form data (number1 and number2), converts them to integers, adds them, and returns the sum as a response.
+<br>
 
 Test in Insomnia
 When testing Please choose POST as the method and Form Data to send post the two variables number1 and number2, see below on how to pick form data.
@@ -312,8 +318,7 @@ Output
 
 ![alt text](image-15.png)
 
-Done, we have tested our first API
-![alt text](image-18.png)
+
 <br>
 <br>
 
