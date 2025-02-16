@@ -147,6 +147,7 @@ from flask import *
 # Create the Flask appl
 app = Flask(__name__)
 # Define a simple route/Endpoint
+# the designated paths or endpoints in a web application that correspond to specific functions
 @app.route('/api/home')
 def home():
     return jsonify({"message":"Welcome to HOME API!"})
@@ -158,6 +159,7 @@ if __name__ == '__main__':
 
 <b>Explanation</b> <br/>
 This code creates a basic Flask web application.<br/>
+Routes: Paths or endpoints in a web application that correspond to specific functions
 
 1. app = Flask(__name__): Initializes the Flask app.<br/>
 2. @app.route('/api/home'): Defines a route for the /signup URL.<br/>
