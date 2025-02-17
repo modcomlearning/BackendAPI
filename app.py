@@ -4,6 +4,7 @@ from flask import *
 # Create the Flask application instance
 app = Flask(__name__)
 
+
 # setup file upload
 import os
 app.config['UPLOAD_FOLDER'] = 'static/images'
