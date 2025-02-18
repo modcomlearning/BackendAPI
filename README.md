@@ -390,3 +390,8 @@ In below requests we use http://127.0.0.1:5000/api/signup as the endpoint, we us
 
 
 ![alt text](image-24.png)
+
+Confirm the has been inserted in your Database users table, Practice by inserting 5 records from insomnia and confirm they are saved in users table.
+
+<b>Conclusion</b> <br/>
+Above we created a sign-up API accessible via http://127.0.0.1:5000/api/signup endpoint.
