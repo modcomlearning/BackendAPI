@@ -386,7 +386,7 @@ This code defines a sign-up route (/api/signup) for handling POST requests.<br/>
 
 Test above api in Insomnia.
 NB: In insomnia create a New Folder to store requests (Also rename your requests).
-In below requests we use http://127.0.0.1:5000/api/signup as the endpoint, we use POST and the body is exactly as they are defined in our /api/signup Endpoint request variables.
+In below requests we use http://127.0.0.1:5000/api/signup as the endpoint, we use POST and the body is exactly as they are defined in our /api/signup Endpoint form request variables.
 
 
 ![alt text](image-24.png)
