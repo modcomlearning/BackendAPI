@@ -264,7 +264,7 @@ in test.py add the /api/calc Route/endpoint as shown below.
 This Flask route /api/calc handles POST requests. It takes two numbers from the form data (number1 and number2), converts them to integers, adds them, and returns the sum as a response.
 <br>
 
-Test in Insomnia
+<b>Test in Insomnia</b> <br/>
 When testing Please choose POST as the method and Form Data to send post the two variables number1 and number2, see below on how to pick form data.
 
 ![alt text](image-36.png)
@@ -276,9 +276,9 @@ The API endpoint we are using to access our calc is http://127.0.0.1:5000/api/ca
 Output
 ![alt text](image-37.png)
 
-## Step 3: Setting Up Flask App for Our eCommerce Web Application
+## Step 3: Setting Up Flask App for Our eCommerce Web Application - Backend
 
-In your class Folder, reate a Python File named app.py. <br/>
+In your class Folder, create a Python File named app.py. <br/>
 In this File we create our API (Application Programming Interface)
 <br/>
 Inside app.py write below code.
@@ -303,10 +303,10 @@ Inside app.py write below code.
 This code creates a basic Flask web application.<br/>
 
 1. app = Flask(__name__): Initializes the Flask app.<br/>
-2. @app.route('/signup'): Defines a route for the /signup URL.<br/>
+2. @app.route('/signup'): Defines a route for the /api/signup URL.<br/>
 3. def signup(): The function that returns the message "Welcome to sign Up API!" when the /signup route is accessed.<br/>
-4. if __name__ == '__main__': Ensures the app runs only when the script is executed directly, not when imported as a module.<br/>
-5. app.run(debug=True): Starts the development server with debugging enabled.<br/><br/>
+4. if __name__ == '__main__': Ensures the app runs only when the script is executed directly, in app.py, also specifies that this is the main application<br/>
+5. app.run(debug=True): Starts the development server with debugging enabled.(debugging mode helps you fix exceptions when incase they arise in your code)<br/><br/>
 
 
 Test this code in Insomnia -  Insomnia is a popular, open-source API client used for testing, debugging, and interacting with APIs.
@@ -376,7 +376,7 @@ Below is the updated app.py
 RUn your flask app, The above api can be accessed through  http://127.0.0.1:5000/api/signup   <br>
 
 <b>Explanation </b> <br/>
-This code defines a sign-up endpoint (/api/signup) for handling POST requests.<br/>
+This code defines a sign-up route (/api/signup) for handling POST requests.<br/>
 
 1. Request handling: It extracts the username, email, password, and phone from the form data submitted in the POST request.<br/>
 2. Database connection: It connects to a MySQL database (BackendAPI) using pymysql and creates a cursor to execute the SQL query that inserts user data into the users table.<br/>
