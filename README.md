@@ -349,6 +349,7 @@ Below is the updated app.py
         # Define the sign up Endpoint
         @app.route('/api/signup', methods = ['POST'])
         def signup():
+                # Extract values POSTED in the request, store them in varibles 
                 username = request.form['username']
                 email = request.form['email']
                 password = request.form['password']
@@ -357,13 +358,22 @@ Below is the updated app.py
                 # COnnect to DB
                 connection = pymysql.connect(host='localhost', user='root',
                                                 password='',database='BackendAPI')
-                # Do insert query
+                # Do the Cursor, initialize the connection
                 cursor = connection.cursor()
-                cursor.execute('insert into users(username,email,password, phone)values(%s,%s,%s,%s)',
-                                    (username, email, password, phone))
+
+                # Do SQL Query with 4 placeholders, Confirm table name and columns are as per your DB
+                sql = 'insert into users(username,email,password, phone)values(%s,%s,%s,%s)'
+
+                # Prepare data to replace above placeholders
+                data = (username, email, password, phone)
+
+                #use Cursor to execute SQL together with the data to replace the 4 placeholders indicated by %s in sql
+                cursor.execute(sql, data)
                 
                 # we need to make a commit to changes to dbase
                 connection.commit()
+
+                # Return a message to show a success/data is saved in users table
                 return jsonify({"success": "Thank you for Joining"})
 
 
