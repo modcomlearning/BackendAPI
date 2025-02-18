@@ -299,8 +299,6 @@ In app.py add below route to create the API Endpoint.
         cursor.execute('SELECT * FROM product_details')
         product_details = cursor.fetchall()
 
-        # Close the database connection
-        connection.close()
 
         # Return the products details directly as a dictionay - JSON
         return jsonify(product_details)

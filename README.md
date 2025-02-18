@@ -278,3 +278,115 @@ Output
 
 ## Step 3: Setting Up Flask App for Our eCommerce Web Application
 
+In your class Folder, reate a Python File named app.py. <br/>
+In this File we create our API (Application Programming Interface)
+<br/>
+Inside app.py write below code.
+
+```python
+        from flask import *
+
+        # Create the Flask application instance
+        app = Flask(__name__)
+
+        # Define a simple route/Endpoint
+        @app.route('/api/signup')
+        def signup():
+            return "Welcome to sign Up API!"
+
+        # Run the app if this file is executed directly
+        if __name__ == '__main__':
+            app.run(debug=True)
+``` 
+<br/><br/>
+<b>Explanation</b> <br/>
+This code creates a basic Flask web application.<br/>
+
+1. app = Flask(__name__): Initializes the Flask app.<br/>
+2. @app.route('/signup'): Defines a route for the /signup URL.<br/>
+3. def signup(): The function that returns the message "Welcome to sign Up API!" when the /signup route is accessed.<br/>
+4. if __name__ == '__main__': Ensures the app runs only when the script is executed directly, not when imported as a module.<br/>
+5. app.run(debug=True): Starts the development server with debugging enabled.<br/><br/>
+
+
+Test this code in Insomnia -  Insomnia is a popular, open-source API client used for testing, debugging, and interacting with APIs.
+<br/>
+The API running at http://127.0.0.1:5000/   <br/>
+For us to access the Signup Route we write it in this format http://127.0.0.1:5000/api/signup <br>
+
+Use http://127.0.0.1:5000/api/signup  while Testing your API in insomnia <br/>
+
+Output
+
+![alt text](image-15.png)
+
+<br>
+<br>
+
+## Step 4: Create a SignUp API.
+When you refer to signup, it typically means the process where users register their details to create an account on a website or application. During the signup process, users provide certain information (e.g., username, email, password) that is stored in the system to uniquely identify them and allow them to access features of the application.
+
+First install pymysql
+
+    pip install pymysql
+
+Then import pymysql like below.
+
+    import pymysql
+
+An endpoint in web development and APIs is a specific URL that allows you to access or interact with the API.
+i.e http://127.0.0.1:5000/api/signup    is an endpoint
+
+
+Update your /api/signup route as follows.
+Below is the updated app.py
+```python
+        from flask import *
+        # Create the Flask application instance
+        app = Flask(__name__)
+        import pymysql
+
+        # Define the sign up Endpoint
+        @app.route('/api/signup', methods = ['POST'])
+        def signup():
+                username = request.form['username']
+                email = request.form['email']
+                password = request.form['password']
+                phone = request.form['phone']
+            
+                # COnnect to DB
+                connection = pymysql.connect(host='localhost', user='root',
+                                                password='',database='BackendAPI')
+                # Do insert query
+                cursor = connection.cursor()
+                cursor.execute('insert into users(username,email,password, phone)values(%s,%s,%s,%s)',
+                                    (username, email, password, phone))
+                
+                # we need to make a commit to changes to dbase
+                connection.commit()
+                return jsonify({"success": "Thank you for Joining"})
+
+
+
+        # Run the app if this file is executed directly
+        if __name__ == '__main__':
+            app.run(debug=True)
+``` 
+
+RUn your flask app, The above api can be accessed through  http://127.0.0.1:5000/api/signup   <br>
+
+<b>Explanation </b> <br/>
+This code defines a sign-up endpoint (/api/signup) for handling POST requests.<br/>
+
+1. Request handling: It extracts the username, email, password, and phone from the form data submitted in the POST request.<br/>
+2. Database connection: It connects to a MySQL database (BackendAPI) using pymysql and creates a cursor to execute the SQL query that inserts user data into the users table.<br/>
+3. Commit changes: The transaction is committed to save the data in the database.<br/>
+4. Response: It returns a JSON(Key-Value Pairs-Dictionary)response with a success message: "Thank you for Joining".<br/><br/>
+
+
+Test above api in Insomnia.
+NB: In insomnia create a New Folder to store requests (Also rename your requests).
+In below requests we use http://127.0.0.1:5000/api/signup as the endpoint, we use POST and the body is exactly as they are defined in our /api/signup Endpoint request variables.
+
+
+![alt text](image-24.png)
