@@ -427,8 +427,11 @@ Below API endpoint will allow users to Signin using credentials provided in /api
             
             # Create a cursor to return results a dictionary
             cursor = connection.cursor(pymysql.cursors.DictCursor)
+            # Do select SQL,test ghis SQL first in phpmyadmin
             sql = "select * from users where email = %s and password = %s"
+            # Prepare data to replace placeholders %s
             data = (email, password)
+            # use cursor to execute SQL providing the data to replace placeholders
             cursor.execute(sql,data)
             
             #  Check how many rows are found
@@ -437,7 +440,7 @@ Below API endpoint will allow users to Signin using credentials provided in /api
             if count == 0:
                 return jsonify({"message": "Login Failed"})
             else:
-                # else there is a user, return a message to say login success and all user details
+                # else there is a user, return a message to say login success and all user details,fetchone gets the logged in user details
                 user = cursor.fetchone()
                 
                 # Return login success message with user details as a dictionary
@@ -445,7 +448,9 @@ Below API endpoint will allow users to Signin using credentials provided in /api
 
 ```
 
-NB: Above we imported import pymysql.cursors  and used in the cursor cursor = connection.cursor(pymysql.cursors.DictCursor), this will help in returning the user details in a Key Value representation or a Dictionary
+NB: Above we imported import pymysql.cursors  and used in the cursor cursor = connection.cursor(pymysql.cursors.DictCursor), this will help in returning the user details in a Key Value representation or a Dictionary.
+
+Its important to run and test this endpoint without <b>pymysql.cursors.DictCursor</b> and observe the response is more of a tuple. Then include pymysql.cursors.DictCursor include it in cursor and test your endpoint, the result is in form of a Dictionary. <br>
 
 Your complete app.py now looks like below.
 
