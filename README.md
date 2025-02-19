@@ -521,5 +521,5 @@ Your complete app.py now looks like below.
 Test Signin insomnia.<br/> use http://127.0.0.1:5000/api/signin  as Endpoint <br>
 ![alt text](image-26.png)
 
-Above screenshot shows when pymysql.cursors.DictCursor is not used, check user details are not in dictionary format - Key Value. Try with pymysql.cursors.DictCursor and if the user details has changed to a Dictionary.
+Above screenshot shows when pymysql.cursors.DictCursor is not used, check user details are not in dictionary format - Key Value. Try with pymysql.cursors.DictCursor and observe if the user details has changed to a Dictionary.
 
