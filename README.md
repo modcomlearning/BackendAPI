@@ -416,7 +416,6 @@ Below API endpoint will allow users to Signin using credentials provided in /api
     import pymysql.cursors
     @app.route('/api/signin', methods = ['POST'])
     def signin():
-        if request.method == 'POST':
             # Extract POST data
             email = request.form['email']
             password = request.form['password']
@@ -425,7 +424,7 @@ Below API endpoint will allow users to Signin using credentials provided in /api
             connection = pymysql.connect(host='localhost', user='root',
                                             password='',database='BackendAPI')
             
-            # Create a cursor to return results a dictionary
+            # Create a cursor to return results a dictionary, initialize connection
             cursor = connection.cursor(pymysql.cursors.DictCursor)
             # Do select SQL,test ghis SQL first in phpmyadmin
             sql = "select * from users where email = %s and password = %s"
@@ -464,7 +463,6 @@ Your complete app.py now looks like below.
         # Define the sign up Endpoint
         @app.route('/api/signup', methods = ['POST'])
         def signup():
-            if request.method =='POST':
                 username = request.form['username']
                 email = request.form['email']
                 password = request.form['password']
@@ -485,7 +483,6 @@ Your complete app.py now looks like below.
         import pymysql.cursors
         @app.route('/api/signin', methods = ['POST'])
         def signin():
-            if request.method == 'POST':
                 email = request.form['email']
                 password = request.form['password']  
                 
@@ -522,4 +519,8 @@ Test Signin in insomnia.<br/> use http://127.0.0.1:5000/api/signin  as Endpoint 
 ![alt text](image-26.png)
 
 Above screenshot shows when pymysql.cursors.DictCursor is not used, check user details are not in dictionary format - Key Value. Try with pymysql.cursors.DictCursor and observe if the user details has changed to a Dictionary.
+
+<b>Conclusion</b> <br>
+In our backend API, we've created a sign-in route accessible via http://127.0.0.1:5000/api/signin endpoint.
+
 
