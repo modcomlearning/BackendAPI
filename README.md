@@ -405,3 +405,113 @@ Confirm the details has been inserted in your Database users table, Practice by 
 
 <b>Conclusion</b> <br/>
 Above we created a sign-up API accessible via http://127.0.0.1:5000/api/signup endpoint.
+
+
+## Step 5: Create a Signin API.
+Below API endpoint will allow users to Signin using credentials provided in /api/signup in Step 4 above. Update your app.py by adding an /api/signin route as shown below.
+
+# Define the sign in Endpoint
+
+```python
+    import pymysql.cursors
+    @app.route('/api/signin', methods = ['POST'])
+    def signin():
+        if request.method == 'POST':
+            # Extract POST data
+            email = request.form['email']
+            password = request.form['password']
+            
+            # Connect to DB
+            connection = pymysql.connect(host='localhost', user='root',
+                                            password='',database='BackendAPI')
+            
+            # Create a cursor to return results a dictionary
+            cursor = connection.cursor(pymysql.cursors.DictCursor)
+            sql = "select * from users where email = %s and password = %s"
+            data = (email, password)
+            cursor.execute(sql,data)
+            
+            #  Check how many rows are found
+            count = cursor.rowcount
+            # If rows a zero, Invalid Credentials - No user Found
+            if count == 0:
+                return jsonify({"message": "Login Failed"})
+            else:
+                # else there is a user, return a message to say login success and all user details
+                user = cursor.fetchone()
+                
+                # Return login success message with user details as a dictionary
+                return jsonify({"message": "Login Success", "user": user})
+
+```
+
+NB: Above we imported import pymysql.cursors  and used in the cursor cursor = connection.cursor(pymysql.cursors.DictCursor), this will help in returning the user details in a Key Value representation or a Dictionary
+
+Your complete app.py now looks like below.
+
+```python
+        from flask import *
+
+        # Create the Flask application instance
+        app = Flask(__name__)
+        import pymysql
+
+        # Define the sign up Endpoint
+        @app.route('/api/signup', methods = ['POST'])
+        def signup():
+            if request.method =='POST':
+                username = request.form['username']
+                email = request.form['email']
+                password = request.form['password']
+            
+                # COnnect to DB
+                connection = pymysql.connect(host='localhost', user='root',
+                                                password='',database='BackendAPI')
+                # Do insert query
+                cursor = connection.cursor()
+                cursor.execute('insert into users(username,email,password)values(%s,%s,%s)',
+                                    (username, email, password))
+                
+                # we need to make a commit to changes to dbase
+                connection.commit()
+                return jsonify({"success": "Thank you for Joining"})
+
+        # Define the sign in Endpoint
+        import pymysql.cursors
+        @app.route('/api/signin', methods = ['POST'])
+        def signin():
+            if request.method == 'POST':
+                email = request.form['email']
+                password = request.form['password']  
+                
+                # Connect to DB
+                connection = pymysql.connect(host='localhost', user='root',
+                                                password='',database='BackendAPI')
+                
+                cursor = connection.cursor(pymysql.cursors.DictCursor)
+                sql = "select * from users where email = %s and password = %s"
+                data = (email, password)
+                cursor.execute(sql,data)
+                
+                #  Check how many rows are found
+                count = cursor.rowcount
+                # If rows a zero, Invalid Credentials
+                if count == 0:
+                    return jsonify({"message": "Login Failed"})
+                else:
+                    # else there is a user, return a message to say login success and all user details
+                    user = cursor.fetchone()
+                    
+                    # Return login success message with user details as a tuple
+                    return jsonify({"message": "Login success", "user": user})
+                
+
+
+        # Run the app if this file is executed directly
+        if __name__ == '__main__':
+            app.run(debug=True)
+
+```
+
+Test Signin insomnia.<br/> use http://127.0.0.1:5000/api/signin  as Endpoint <br>
+![alt text](image-26.png)
