@@ -450,7 +450,7 @@ Below API endpoint will allow users to Signin using credentials provided in /api
 
 NB: Above we imported import pymysql.cursors  and used in the cursor cursor = connection.cursor(pymysql.cursors.DictCursor), this will help in returning the user details in a Key Value representation or a Dictionary.
 
-Its important to run and test this endpoint without <b>pymysql.cursors.DictCursor</b> and observe the response is more of a tuple. Then include pymysql.cursors.DictCursor include it in cursor and test your endpoint, the result is in form of a Dictionary. <br>
+Its important to run and test this endpoint without <b>pymysql.cursors.DictCursor</b> and observe the response is a complete key value pair response. Then include <b>pymysql.cursors.DictCursor</b> include it in cursor and test your endpoint, the result is in form of a Dictionary. <br>
 
 Your complete app.py now looks like below.
 
@@ -520,3 +520,6 @@ Your complete app.py now looks like below.
 
 Test Signin insomnia.<br/> use http://127.0.0.1:5000/api/signin  as Endpoint <br>
 ![alt text](image-26.png)
+
+Above screenshot shows when pymysql.cursors.DictCursor is not used, check user details are not in dictionary format - Key Value. Try with pymysql.cursors.DictCursor and if the user details has changed to a Dictionary.
+
