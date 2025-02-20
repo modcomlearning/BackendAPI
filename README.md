@@ -579,7 +579,8 @@ In app.py add below route to create the API Endpoint
 
 NB: product_photo must be provided as a File since its an Image.
 <br>
-http://127.0.0.1:5000/api/add_product as the endpoint. <br>
+use http://127.0.0.1:5000/api/add_product as the endpoint. <br>
+
 ![alt text](image-28.png)
 <br>
 Confirm that the image File has been saved in static/images folder and the rest of product details including the image filename have been saved in the products table. 
@@ -619,9 +620,9 @@ In app.py add below route to create the API Endpoint.
 
 ```
 
-<b>Test in Insomnia</b>
+<b>Test in Insomnia</b> <br/>
 In below image shows a Dictionary - JSON Array showing several products displayed
-
+Use http://127.0.0.1:5000/api/get_product_details as the endpoint. <br>
 Output
 ![alt text](image-27.png)
 
@@ -629,12 +630,15 @@ Output
 ## Step 8: Making an MPESA Payment API.
 The API Endpoint below will be used for any payment to be done in our E-commerce Web Application. Users can Pay a product via MPESA.
 <br>
+
+![alt text](M-PESA-API-Integration.jpg)
+
 M-Pesa Daraja is an API provided by Safaricom, a telecommunications company in Kenya, that allows businesses to integrate M-Pesa's mobile money services into their applications. It enables developers to access a range of M-Pesa functionalities, such as sending and receiving money, checking account balances, and making payments via the M-Pesa platform.
 Please check https://developer.safaricom.co.ke/
 <br>
 After a Suucessful intergration the buyer will get an STK Push like below to complete payment.<br>
 
-<img src="Screenshot_20250220-165048_Phone.jpg" width="300">
+<img src="Screenshot_20250220-165048_Phone.jpg" width="400">
 
 <br>
 
@@ -714,7 +718,9 @@ In app.py add below code
 
 ```
 
-Test in Insomnia <br/>
+<b>Test in Insomnia</b> <br/>
+
+Use http://127.0.0.1:5000/api/mpesa_payment as the endpoint. <br>
 
 ![alt text](image-29.png)
 <br>
