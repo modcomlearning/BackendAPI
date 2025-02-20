@@ -526,7 +526,7 @@ In our backend API, we've created a sign-in route accessible via http://127.0.0.
 ## Step 6: Create a Product upload API.
 This endpoint will be used by users in uploading their products details.
 First create Folder named static in your Flask folder.
-Inside static folder create a subfolder named images. (This is where the products photos will be uploaded). Having images placed in a Folder improves space management in the database and make images load faster in your web application.<br>
+Inside static folder create a subfolder named images.(This is where the products photos will be uploaded). <br>Having images placed in a Folder improves space management in the database and make images load faster in your web application.<br><br>
 in this route, the image File is saved in static Folder and the image name is saved in the database products details table.<br>
 
 In app.py add below lines to set up Upload directory where our products image will be uploaded <br>
