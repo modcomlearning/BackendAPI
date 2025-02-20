@@ -628,7 +628,7 @@ Output
 
 
 ## Step 8: Making an MPESA Payment API.
-The API Endpoint below will be used for any payment to be done in our E-commerce Web Application. Users can Pay a product via MPESA.
+In the Step we buiil an API Endpoint/Route that will be used to make payment in our E-commerce Web Application. Users can Pay a product via LIPA NA MPESA.
 <br>
 
 ![alt text](M-PESA-API-Integration.jpg)
