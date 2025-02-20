@@ -394,7 +394,7 @@ This code defines a sign-up route (/api/signup) for handling POST requests.<br/>
 4. Response: It returns a JSON(Key-Value Pairs-Dictionary)response with a success message: "Thank you for Joining".<br/><br/>
 
 
-Test above api in Insomnia.
+Test above api in Insomnia.<br>
 NB: In insomnia create a New Folder to store requests (Also rename your requests).
 In below requests we use http://127.0.0.1:5000/api/signup as the endpoint, we use POST and the body is exactly as they are defined in our /api/signup Endpoint form request variables.
 
@@ -463,7 +463,6 @@ Your complete app.py now looks like below.
         # Define the sign up Endpoint
         @app.route('/api/signup', methods = ['POST'])
         def signup():
-                username = request.form['username']
                 email = request.form['email']
                 password = request.form['password']
             

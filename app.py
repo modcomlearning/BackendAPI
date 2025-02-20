@@ -33,36 +33,37 @@ def signup():
         return jsonify({"success": "Thank you for Joining"})
 
 
-# Define the sign in Route/Endpoint
+import pymysql.cursors
 @app.route('/api/signin', methods = ['POST'])
 def signin():
-    if request.method == 'POST':
-         # Extract POST Data
-         email = request.form['email']
-         password = request.form['password']
-    
-         
-         # Connect to DB
-         connection = pymysql.connect(host='localhost', user='root',
+        # Extract POST data
+        email = request.form['email']
+        password = request.form['password']
+        
+        # Connect to DB
+        connection = pymysql.connect(host='localhost', user='root',
                                         password='',database='BackendAPI')
-         
-         # Create a Cursor
-         cursor = connection.cursor()
-         sql = "select * from users where email = %s and password = %s"
-         data = (email, password)
-         cursor.execute(sql,data)
-         
+        
+        # Create a cursor to return results a dictionary, initialize connection
+        cursor = connection.cursor(pymysql.cursors.DictCursor)
+        # Do select SQL,test ghis SQL first in phpmyadmin
+        sql = "select * from users where email = %s and password = %s"
+        # Prepare data to replace placeholders %s
+        data = (email, password)
+        # use cursor to execute SQL providing the data to replace placeholders
+        cursor.execute(sql,data)
+        
         #  Check how many rows are found
-         count = cursor.rowcount
-         # If rows a zero, Invalid Credentials
-         if count == 0:
-             return jsonify({"message": "Login Failed"})
-         else:
-             # else there is a user, return a message to say login success and all user details
-             user = cursor.fetchone()
-             
-             # Return login success message with user details as a tuple
-             return jsonify({"message": "Login success", "user": user})
+        count = cursor.rowcount
+        # If rows a zero, Invalid Credentials - No user Found
+        if count == 0:
+            return jsonify({"message": "Login Failed"})
+        else:
+            # else there is a user, return a message to say login success and all user details,fetchone gets the logged in user details
+            user = cursor.fetchone()
+            
+            # Return login success message with user details as a dictionary
+            return jsonify({"message": "Login Success", "user": user})
          
 
 
