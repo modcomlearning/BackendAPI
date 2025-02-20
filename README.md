@@ -588,12 +588,11 @@ Confirm that the image File has been saved in static/images folder and the rest 
 
 
 ## Step 7: Create a Get Products  API.
-This endpoint will be used by users to View Posted products
+This endpoint will be used by users to View Posted products,  Here, we will be fetching products details such as product_name, cost, description and product image. <br>
 In app.py add below route to create the API Endpoint.
 
 ```python
     # Define the Get Product Details Route/Endpoint
-    import pymysql.cursors
     @app.route('/api/get_product_details', methods=['GET'])
     def get_product_details():
 
@@ -602,8 +601,16 @@ In app.py add below route to create the API Endpoint.
                                             password='',database='BackendAPI')
 
         # Create a cursor object and fetch all products details from the products_details table
+        # pymysql.cursors.DictCursor helps return a Dictionary Format.
         cursor = connection.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('SELECT * FROM product_details')
+
+        # DO SELECT SQL.
+        sql = 'SELECT * FROM product_details'
+
+        # Use cursor to execute SQL
+        cursor.execute(sql)
+
+        # Fetch/Get all records into a Dictionary Format
         product_details = cursor.fetchall()
 
 
@@ -612,18 +619,25 @@ In app.py add below route to create the API Endpoint.
 
 ```
 
-Test in Insmnia
+<b>Test in Insomnia</b>
 In below image shows a Dictionary - JSON Array showing several products displayed
+
 Output
 ![alt text](image-27.png)
 
 
 ## Step 8: Making an MPESA Payment API.
-The API Endpoint below will be used for any payment to be done in our E-commerce Web Application.
-We will use MPESA Daraja Intergration. Please check https://developer.safaricom.co.ke/
+The API Endpoint below will be used for any payment to be done in our E-commerce Web Application. Users can Pay a product via MPESA.
+<br>
+M-Pesa Daraja is an API provided by Safaricom, a telecommunications company in Kenya, that allows businesses to integrate M-Pesa's mobile money services into their applications. It enables developers to access a range of M-Pesa functionalities, such as sending and receiving money, checking account balances, and making payments via the M-Pesa platform.
+Please check https://developer.safaricom.co.ke/
+<br>
+After a Suucessful intergration the buyer will get an STK Push like below to complete payment.<br>
 
+![alt text](Screenshot_20250220-165048_Phone.jpg)
+<br>
 
-NB: you will need to install requests if not already installed.
+NB: You will need to install requests if not already installed.
 
     pip install requests
 
@@ -639,53 +653,63 @@ In app.py add below code
     @app.route('/api/mpesa_payment', methods=['POST'])
     def mpesa_payment():
         if request.method == 'POST':
+            # Extract POST Values sent
             amount = request.form['amount']
             phone = request.form['phone']
-            # GENERATING THE ACCESS TOKEN
-            # create an account on safaricom daraja
+
+            # Provide consumer_key and consumer_secret provided by safaricom
             consumer_key = "GTWADFxIpUfDoNikNGqq1C3023evM6UH"
             consumer_secret = "amFbAoUByPV2rM5A"
 
+            # Authenticate Yourself using above credentials to Safaricom Services, and Bearer Token this is used by safaricom for security identification purposes - Your are given Access
             api_URL = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"  # AUTH URL
-            r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
-
-            data = r.json()
+            # Provide your consumer_key and consumer_secret 
+            response = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
+            # Get response as Dictionary
+            data = response.json()
+            # Retrieve the Provide Token
+            # Token allows you to proceed with the transaction
             access_token = "Bearer" + ' ' + data['access_token']
 
             #  GETTING THE PASSWORD
-            timestamp = datetime.datetime.today().strftime('%Y%m%d%H%M%S')
-            passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
-            business_short_code = "174379"
+            timestamp = datetime.datetime.today().strftime('%Y%m%d%H%M%S')  # Current Time
+            passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'  # Passkey(Safaricom Provided)
+            business_short_code = "174379"  # Test Paybile (Safaricom Provided)
+            # Combine above 3 Strings to get data variable
             data = business_short_code + passkey + timestamp
+            # Encode to Base64
             encoded = base64.b64encode(data.encode())
-            password = encoded.decode('utf-8')
+            password = encoded.decode()
 
             # BODY OR PAYLOAD
             payload = {
                 "BusinessShortCode": "174379",
-                "Password": "{}".format(password),
-                "Timestamp": "{}".format(timestamp),
+                "Password":password,
+                "Timestamp": timestamp,
                 "TransactionType": "CustomerPayBillOnline",
                 "Amount": "1",  # use 1 when testing
                 "PartyA": phone,  # change to your number
                 "PartyB": "174379",
                 "PhoneNumber": phone,
-                "CallBackURL": "https://modcom.co.ke/api/confirmation.php",
-                "AccountReference": "account",
-                "TransactionDesc": "account"
+                "CallBackURL": "https://coding.co.ke/api/confirm.php",
+                "AccountReference": "SokoGarden Online",
+                "TransactionDesc": "Payments for Products"
             }
 
-            # POPULAING THE HTTP HEADER
+            # POPULAING THE HTTP HEADER, PROVIDE THE TOKEN ISSUED EARLIER
             headers = {
                 "Authorization": access_token,
                 "Content-Type": "application/json"
             }
 
-            url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"  # C2B URL
-
+            # Specify STK Push  Trigger URL
+            url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"  
+            # Create a POST Request to above url, providing headers, payload 
+            # Below triggers an STK Push to the phone number indicated in the payload and the amount.
             response = requests.post(url, json=payload, headers=headers)
-            print(response.text)
-            return jsonify({"message": "Please Complete Payment in Your Phone and we will deliver in minutes"})
+            print(response.text) # 
+            # Give a Response
+            return jsonify({"message": "An MPESA Prompt has been sent to Your Phone, Please Check & Complete Payment"})
 
 ```
 
