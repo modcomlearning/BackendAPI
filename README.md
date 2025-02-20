@@ -634,7 +634,8 @@ Please check https://developer.safaricom.co.ke/
 <br>
 After a Suucessful intergration the buyer will get an STK Push like below to complete payment.<br>
 
-![alt text](Screenshot_20250220-165048_Phone.jpg)
+<img src="Screenshot_20250220-165048_Phone.jpg" width="300">
+
 <br>
 
 NB: You will need to install requests if not already installed.
