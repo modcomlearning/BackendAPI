@@ -586,3 +586,110 @@ Confirm that the image File has been saved in static/images folder and the rest 
 
 
 
+
+## Step 7: Create a Get Products  API.
+This endpoint will be used by users to View Posted products
+In app.py add below route to create the API Endpoint.
+
+```python
+    # Define the Get Product Details Route/Endpoint
+    import pymysql.cursors
+    @app.route('/api/get_product_details', methods=['GET'])
+    def get_product_details():
+
+        # Connect to the database with DictCursor for direct dictionary results
+        connection = pymysql.connect(host='localhost', user='root',
+                                            password='',database='BackendAPI')
+
+        # Create a cursor object and fetch all products details from the products_details table
+        cursor = connection.cursor(pymysql.cursors.DictCursor)
+        cursor.execute('SELECT * FROM product_details')
+        product_details = cursor.fetchall()
+
+
+        # Return the products details directly as a dictionay - JSON
+        return jsonify(product_details)
+
+```
+
+Test in Insmnia
+In below image shows a Dictionary - JSON Array showing several products displayed
+Output
+![alt text](image-27.png)
+
+
+## Step 8: Making an MPESA Payment API.
+The API Endpoint below will be used for any payment to be done in our E-commerce Web Application.
+We will use MPESA Daraja Intergration. Please check https://developer.safaricom.co.ke/
+
+
+NB: you will need to install requests if not already installed.
+
+    pip install requests
+
+In app.py add below code
+
+```python
+    # Mpesa Payment Route 
+    import requests
+    import datetime
+    import base64
+    from requests.auth import HTTPBasicAuth
+
+    @app.route('/api/mpesa_payment', methods=['POST'])
+    def mpesa_payment():
+        if request.method == 'POST':
+            amount = request.form['amount']
+            phone = request.form['phone']
+            # GENERATING THE ACCESS TOKEN
+            # create an account on safaricom daraja
+            consumer_key = "GTWADFxIpUfDoNikNGqq1C3023evM6UH"
+            consumer_secret = "amFbAoUByPV2rM5A"
+
+            api_URL = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"  # AUTH URL
+            r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
+
+            data = r.json()
+            access_token = "Bearer" + ' ' + data['access_token']
+
+            #  GETTING THE PASSWORD
+            timestamp = datetime.datetime.today().strftime('%Y%m%d%H%M%S')
+            passkey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
+            business_short_code = "174379"
+            data = business_short_code + passkey + timestamp
+            encoded = base64.b64encode(data.encode())
+            password = encoded.decode('utf-8')
+
+            # BODY OR PAYLOAD
+            payload = {
+                "BusinessShortCode": "174379",
+                "Password": "{}".format(password),
+                "Timestamp": "{}".format(timestamp),
+                "TransactionType": "CustomerPayBillOnline",
+                "Amount": "1",  # use 1 when testing
+                "PartyA": phone,  # change to your number
+                "PartyB": "174379",
+                "PhoneNumber": phone,
+                "CallBackURL": "https://modcom.co.ke/api/confirmation.php",
+                "AccountReference": "account",
+                "TransactionDesc": "account"
+            }
+
+            # POPULAING THE HTTP HEADER
+            headers = {
+                "Authorization": access_token,
+                "Content-Type": "application/json"
+            }
+
+            url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"  # C2B URL
+
+            response = requests.post(url, json=payload, headers=headers)
+            print(response.text)
+            return jsonify({"message": "Please Complete Payment in Your Phone and we will deliver in minutes"})
+
+```
+
+Test in Insomnia <br/>
+
+![alt text](image-29.png)
+<br>
