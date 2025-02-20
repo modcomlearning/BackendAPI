@@ -523,4 +523,64 @@ Above screenshot shows when pymysql.cursors.DictCursor is not used, check user d
 <b>Conclusion</b> <br>
 In our backend API, we've created a sign-in route accessible via http://127.0.0.1:5000/api/signin endpoint.
 
+## Step 6: Create a Product upload API.
+This endpoint will be used by users in uploading their products details.
+First create Folder named static in your Flask folder.
+Inside static folder create a subfolder named images. (This is where the products photos will be uploaded). Having images placed in a Folder improves space management in the database and make images load faster in your web application.<br>
+in this route, the image File is saved in static Folder and the image name is saved in the database products details table.<br>
+
+In app.py add below lines to set up Upload directory where our products image will be uploaded <br>
+You can place then Just below <b>app = Flask(__name__) </b>
+
+    # setup file upload, os helps in getting the computer file path, later in this code.
+    import os
+    app.config['UPLOAD_FOLDER'] = 'static/images'
+
+
+In app.py add below route to create the API Endpoint
+
+```python
+    # Define the Add Product Route/Endpoint
+    @app.route('/api/add_product', methods=['POST'])
+    def add_product():
+            # Extract POST Data
+            product_name = request.form['product_name']
+            product_description = request.form['product_description']
+            product_cost = request.form['product_cost']
+            # Extract image data
+            photo = request.files['product_photo']
+            # Get the image file name
+            filename = photo.filename
+            # Specify computer path where the image will be saved (in static Folder)
+            photo_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            # Save your image to that path specified above
+            photo.save(photo_path)
+
+            # Connect to DB
+            connection = pymysql.connect(host='localhost', user='root',
+                                            password='',database='BackendAPI')
+            # Create a cursor, initialize connection 
+            cursor = connection.cursor()
+            # Do Insert SQL, include placeholders 
+            sql = 'INSERT INTO product_details (product_name, product_description, product_cost, product_photo) VALUES (%s, %s, %s, %s)'
+            # Prepare data to replace placeholders 
+            data = (product_name, product_description, product_cost,  filename)
+            # using cursor execute sql, providing values in place of placeholders
+            cursor.execute(sql, data)
+
+            # Commit the changes to the database
+            connection.commit()
+            # Return success message in Dictionary Format
+            return jsonify({"success": "Product details added successfully"})
+
+```
+
+Test above in insomnia
+
+NB: product_photo must be provided as a File since its an Image.
+
+![alt text](image-28.png)
+
+
+
 
