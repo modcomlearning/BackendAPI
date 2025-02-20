@@ -575,12 +575,14 @@ In app.py add below route to create the API Endpoint
 
 ```
 
-Test above in insomnia
+<b>Test above in insomnia</b>
 
 NB: product_photo must be provided as a File since its an Image.
-
+<br>
+http://127.0.0.1:5000/api/add_product as the endpoint. <br>
 ![alt text](image-28.png)
-
+<br>
+Confirm that the image File has been saved in static/images folder and the rest of product details including the image filename have been saved in the products table. 
 
 
 
