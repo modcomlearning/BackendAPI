@@ -819,16 +819,17 @@ Sign in with your account or create a new account if you don't have one.<br>
 
 ![alt text](image-39.png)
 
-Go to the "Consoles" tab on PythonAnywhere. </br>
-Start a Bash console.</br>
-Install dependencies:</br>
-Run the following commands:
+1. Go to the "Consoles" tab on PythonAnywhere. </br>
+2. Start a Bash console.</br>
+3. Install dependencies:</br>
+4. Run the following commands:
    ```
    pip install pymysql
    pip install flask_cors
    ```
 
 <b>Step 10-3: Database Setup</b> </br>
+
 1. Go to the "Databases" tab on PythonAnywhere. </br>
 2. Create a Pssword. Please Record this password in a Notepab/Book</br>
 3. NB: After password creation, It displays the host and username.  Please Record these details in a Notepab/Book</br>
@@ -838,6 +839,7 @@ Run the following commands:
 NB: the host, username, password and database names will be needed by app.py during pymysql connections, SO we need to record this details in a Notepad/Book for later use in app.py.
 
 <b>Step 10-4: Flask App Setup</b> </br>
+
 1. Go to the "Files" tab on PythonAnywhere. </br>
 2. Go to mysite Folder, Open flask_app.py, Copy your API code from your computer and paste it in this File. <br>
 3. Please replace the Database connections with the once created in step 10-3 above.Refer from ypur Notepad/Book. <br>
@@ -846,6 +848,7 @@ NB: the host, username, password and database names will be needed by app.py dur
 6. while still in mysite Folder, Create a Folder named static/images. This Folder is used for images uploads<br>
 7. Go to "Web" tab on PythonAnywhere. and Reload the application. <br>
 8. Your application is Live at https://yourusername.pythonanywhere.com/ <br>
+
 
 Your API endpoints can be accessed as:
 
