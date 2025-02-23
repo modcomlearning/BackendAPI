@@ -723,3 +723,183 @@ Use http://127.0.0.1:5000/api/mpesa_payment as the endpoint. <br>
 
 ![alt text](image-29.png)
 <br>
+
+
+
+## Step 9: Adding CORS - Cross Origin Resource Sharing.
+In order to allow this API be accessible by the Front End system to be created.<br>
+Frontend and Backend will be two applications to be linked together, By default, web browsers block requests from fronend backend, Hence we need to add CORS in the backend to allow t communicate with Frontend.
+<br>
+<b>What Does CORS Do?</b> <br>
+CORS (Cross-Origin Resource Sharing) is a way for the backend to say, <br>
+<i>"Hey, it's okay for frontend to make requests to me!" </i>
+<br>
+The backend does this by adding special CORS headers in its responses.
+We need to enable CORS.<br>
+Read more on CORS. <br>
+https://blog.postman.com/what-is-cors/ <br><br>
+
+First install CORS in Flask. 
+
+        pip install flask-cors
+
+Then import CORS and Configure in your app
+   
+        from flask_cors import CORS
+        CORS(app)
+
+You can add above code just below  <b>app = Flask(__name__) </b>
+
+In this Github repo, we created an <b>Backend API for E-commerce Web Application</b> <br>
+The application provides an API to signup, signin, add_product, get_product_details and MPESA payment integration. This API creates the Back - End of our full-stack application.
+
+
+## Step 10: Hosting on PythonAnywhere.
+Why Host an API on PythonAnywhere?<br>
+Imagine you build a Flask API on your computer. It works great, but there's a problem:
+💻 It only runs on your computer! No one else can access it. Since its in your computer only - we say its LOCAL.
+<br>
+
+<b>Why Use PythonAnywhere?</b> <br>
+PythonAnywhere is an onlone platform that: <br>
+✅ Keeps your API running 24/7 (Even when your computer/laptop is off).<br>
+✅ Allows your API Accessible everywhere/ANytime since Itsts ONLINE <br>
+✅ Many users can access the API Backend from the Frontend - (TODO Later). <br>
+
+
+<b>How it Works:</b><br>
+1️⃣ Upload your Flask app from your computer to pythonanywhere . (just like copying files). <br>
+2️⃣ Set up a web app (PythonAnywhere runs your app.py). <br>
+3️⃣ Your API gets a live URL (https://yourusername.pythonanywhere.com/api/). <br>
+4️⃣ Your frontend or mobile app can use it! 🎉 <br>
+
+<b>Example:</b> <br>
+Before Hosting - LOCAL: API only runs on http://127.0.0.1:5000/api/ <br>   
+After Hosting - ONLINE: API is accessible at https://yourusername.pythonanywhere.com/api/ <br>
+
+
+
+<h3>Hosting the API on Pythonanywhere</h3> <br>
+<b>Objective: </b> <br>
+By the end of this lesson, students will:  <br>
+Learn how to set up a Flask API on PythonAnywhere.
+Add CORS support for cross-origin requests.
+Configure a MySQL database connection.
+Configure Flask app.py.
+Configure images location folder - static/images
+Test the API functionality witj insomnia.
+
+<br>
+<b>Step 10-1: Logging into PythonAnywhere</b> </br>
+<b>Access PythonAnywhere: </b> <br>
+Visit PythonAnywhere.  <br>
+Sign in with your account or create a new account if you don't have one.<br>
+
+![alt text](image-38.png)
+
+<b>Navigation Menu Overview: </b> <br>
+<b>Dashboard:</b> Main page where you manage your account, files, and processes.<br>
+<b>Files:</b> Where you can upload, edit, and manage your files.<br>
+<b>Consoles: </b>Launch terminals to interact with your Python environment.<br>
+<b>Web:</b> Configure your web apps (Flask, Django, etc.) and manage their settings.<br>
+<b>Databases:</b> Set up and manage databases for your app (MySQL, SQLite).<br>
+<b>Tasks:</b> Schedule tasks to run periodically.<br>
+
+
+<b>Step 10-2: Create a Web Application</b> </br>
+
+![alt text](image-40.png)
+
+Go to the "Web" tab on PythonAnywhere. </br>
+Click on Create Web Application</br>
+Follow the steps : use Latest Python and Flask</br>
+Finish creating the Web App. </br>
+NB: After creating the Web Application, still under Web Tab check the link where your app will be accessed. Please note it somewhere in a Notepad/Book <br>
+     
+     https://yourusername.pythonanywhere.com/
+
+<b>Step 10-3: Install pymysql and flask_cors</b> </br>
+
+![alt text](image-39.png)
+
+Go to the "Consoles" tab on PythonAnywhere. </br>
+Start a Bash console.</br>
+Install dependencies:</br>
+Run the following commands:
+   
+   pip install pymysql
+   pip install flask_cors
+
+
+<b>Step 10-3: Database Setup</b> </br>
+Go to the "Databases" tab on PythonAnywhere. </br>
+Create a Pssword. Please Record this password in a Notepab/Book</br>
+NB: After password creation, It displays the host and username.  Please Record this details in a Notepab/Book</br>
+Open the default database: Please Record this database name in a Notepab/Book</br>
+Create the users and product_details tables:</br>
+
+NB: the host, username, password and database names will be needed by app.py during pymysql connections, SO we need to record this details in a Notepad/Book for later use in app.py.
+
+<b>Step 10-4: Flask App Setup</b> </br>
+Go to the "Files" tab on PythonAnywhere. </br>
+Go to mysite Folder, Open flask_app.py, Copy your API code from your computer and paste it in this File. <br>
+Please replace the Database connections with the once created in step 10-3 above.Refer from ypur Notepad/Book. <br>
+Replace connections for all routes.<br>
+Save this File <br>
+while still in mysite Folder, Create a Folder named static/images. This Folder is used for images uploads<br>
+Go to "Web" tab on PythonAnywhere. and Reload the application. <br>
+Your application is Live at https://yourusername.pythonanywhere.com/ <br>
+
+Your API endpoints can be accessed as:
+
+    https://yourusername.pythonanywhere.com/api/signup
+    https://yourusername.pythonanywhere.com/api/signin
+    https://yourusername.pythonanywhere.com/api/add_product
+    https://yourusername.pythonanywhere.com/api/get_product_details
+    https://yourusername.pythonanywhere.com/api/make_payment
+
+Please check your routes spelling, they can be different from above. <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Above API will be accessed in the Front - End (User Side) by React JS and Android Application. <br>
+
+Next is FrontEnd Development using Javascript, React JS.  <br>
+Check this link for updates on Frontend Documentation.
+
+<h3>Happy Coding! </h3>
+
+
+
+
+
+
