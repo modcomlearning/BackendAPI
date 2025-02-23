@@ -837,7 +837,7 @@ Sign in with your account or create a new account if you don't have one.<br>
 5. Create the users and product_details tables:</br>
 <i>
 NB: the host, username, password and database names will be needed by app.py during pymysql connections, So we need to record these details in a Notepad/Book for later use in app.py.
-</i> <br>
+</i> <br><br>
 <b>Step 10-4: Flask App Setup</b> </br>
 
 1. Go to the "Files" tab on PythonAnywhere. </br>
@@ -847,10 +847,11 @@ NB: the host, username, password and database names will be needed by app.py dur
 5. Save this File <br>
 6. while still in mysite Folder, Create a Folder named static/images. This Folder is used for images uploads<br>
 7. Go to "Web" tab on PythonAnywhere. and Reload the application. <br>
-8. Your application is Live at https://yourusername.pythonanywhere.com/ <br>
+
+<h5>Your application is Live at https://yourusername.pythonanywhere.com/  </h5><br>
 
 
-Your API endpoints can be accessed as:
+Your API endpoints can be accessed as; 
 
     https://yourusername.pythonanywhere.com/api/signup
     https://yourusername.pythonanywhere.com/api/signin
@@ -859,37 +860,7 @@ Your API endpoints can be accessed as:
     https://yourusername.pythonanywhere.com/api/make_payment
 
 Please check your routes spelling, they can be different from above. <br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Test above endpoints in insomnia. <br>
 
 Above API will be accessed in the Front - End (User Side) by React JS and Android Application. <br>
 
