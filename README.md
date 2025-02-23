@@ -828,7 +828,7 @@ Sign in with your account or create a new account if you don't have one.<br>
    pip install flask_cors
    ```
 
-<b>Step 10-3: Database Setup</b> </br>
+<b>Step 10-4: Database Setup</b> </br>
 
 1. Go to the "Databases" tab on PythonAnywhere. </br>
 2. Create a Pssword. Please Record this password in a Notepab/Book</br>
@@ -838,11 +838,11 @@ Sign in with your account or create a new account if you don't have one.<br>
 <i>
 NB: the host, username, password and database names will be needed by app.py during pymysql connections, So we need to record these details in a Notepad/Book for later use in app.py.
 </i> <br><br>
-<b>Step 10-4: Flask App Setup</b> </br>
+<b>Step 10-5: Flask App Setup</b> </br>
 
 1. Go to the "Files" tab on PythonAnywhere. </br>
 2. Go to mysite Folder, Open flask_app.py, Copy your API code from your computer and paste it in this File. <br>
-3. Please replace the Database connections with the once created in step 10-3 above.Refer from ypur Notepad/Book. <br>
+3. Please replace the Database connections with the once created in step 10-4 above.Refer from ypur Notepad/Book. <br>
 4. Replace connections for all routes.<br>
 5. Save this File <br>
 6. while still in mysite Folder, Create a Folder named static/images. This Folder is used for images uploads<br>
