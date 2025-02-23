@@ -789,7 +789,7 @@ After Hosting - ONLINE: API is accessible at https://yourusername.pythonanywhere
 
 <br><br>
 <b>Step 10-1: Logging into PythonAnywhere</b> </br>
-<b>Access PythonAnywhere: </b> <br>
+<b>Access PythonAnywhere:   https://www.pythonanywhere.com  </b> <br>
 Visit PythonAnywhere.  <br>
 Sign in with your account or create a new account if you don't have one.<br>
 
