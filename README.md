@@ -782,14 +782,14 @@ After Hosting - ONLINE: API is accessible at https://yourusername.pythonanywhere
 <h3>Hosting the API on Pythonanywhere</h3> <br>
 <b>Objective: </b> <br>
 By the end of this lesson, students will:  <br>
-Learn how to set up a Flask API on PythonAnywhere.
-Add CORS support for cross-origin requests.
-Configure a MySQL database connection.
-Configure Flask app.py.
-Configure images location folder - static/images
-Test the API functionality witj insomnia.
+Learn how to set up a Flask API on PythonAnywhere.<br>
+Add CORS support for cross-origin requests. <br>
+Configure a MySQL database connection. <br>
+Configure Flask app.py. <br>
+Configure images location folder - static/images <br>
+Test the API functionality with insomnia.<br>
 
-<br>
+<br><br>
 <b>Step 10-1: Logging into PythonAnywhere</b> </br>
 <b>Access PythonAnywhere: </b> <br>
 Visit PythonAnywhere.  <br>
@@ -805,7 +805,7 @@ Sign in with your account or create a new account if you don't have one.<br>
 <b>Databases:</b> Set up and manage databases for your app (MySQL, SQLite).<br>
 <b>Tasks:</b> Schedule tasks to run periodically.<br>
 
-
+<br>
 <b>Step 10-2: Create a Web Application</b> </br>
 
 ![alt text](image-40.png)
@@ -817,7 +817,7 @@ Finish creating the Web App. </br>
 NB: After creating the Web Application, still under Web Tab check the link where your app will be accessed. Please note it somewhere in a Notepad/Book <br>
      
      https://yourusername.pythonanywhere.com/
-
+<br>
 <b>Step 10-3: Install pymysql and flask_cors</b> </br>
 
 ![alt text](image-39.png)
