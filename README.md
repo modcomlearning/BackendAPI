@@ -790,7 +790,6 @@ After Hosting - ONLINE: API is accessible at https://yourusername.pythonanywhere
 <br><br>
 <b>Step 10-1: Logging into PythonAnywhere</b> </br>
 <b>Access PythonAnywhere:   https://www.pythonanywhere.com  </b> <br>
-Visit PythonAnywhere.  <br>
 Sign in with your account or create a new account if you don't have one.<br>
 
 ![alt text](image-38.png)
@@ -804,12 +803,12 @@ Sign in with your account or create a new account if you don't have one.<br>
 <b>Tasks:</b> Schedule tasks to run periodically.<br>
 
 <br>
-<b>Step 10-2: Create a Web Application</b> </br>
+<b>Step 10-2: Add a New Web Application</b> </br>
 
 ![alt text](image-40.png)
 
 Go to the "Web" tab on PythonAnywhere. </br>
-Click on Create Web Application</br>
+Click on Add a New Web Application</br>
 Follow the steps : use Latest Python and Flask</br>
 Finish creating the Web App. </br>
 NB: After creating the Web Application, still under Web Tab check the link where your app will be accessed. Please note it somewhere in a Notepad/Book <br>
