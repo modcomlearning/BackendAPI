@@ -798,7 +798,7 @@ Sign in with your account or create a new account if you don't have one.<br>
 <b>Dashboard:</b> Main page where you manage your account, files, and processes.<br>
 <b>Files:</b> Where you can upload, edit, and manage your files.<br>
 <b>Consoles: </b>Launch terminals to interact with your Python environment.<br>
-<b>Web:</b> Configure your web apps (Flask, Django, etc.) and manage their settings.<br>
+<b>Web:</b> Configure your web apps (Flask etc.) and manage their settings.<br>
 <b>Databases:</b> Set up and manage databases for your app (MySQL, SQLite).<br>
 <b>Tasks:</b> Schedule tasks to run periodically.<br>
 
