@@ -835,9 +835,9 @@ Sign in with your account or create a new account if you don't have one.<br>
 3. NB: After password creation, It displays the host and username.  Please Record these details in a Notepab/Book</br>
 4. Open the default database: Please Record this database name in a Notepab/Book</br>
 5. Create the users and product_details tables:</br>
-
-NB: the host, username, password and database names will be needed by app.py during pymysql connections, SO we need to record this details in a Notepad/Book for later use in app.py.
-
+<b>
+NB: the host, username, password and database names will be needed by app.py during pymysql connections, So we need to record these details in a Notepad/Book for later use in app.py.
+</b>
 <b>Step 10-4: Flask App Setup</b> </br>
 
 1. Go to the "Files" tab on PythonAnywhere. </br>
