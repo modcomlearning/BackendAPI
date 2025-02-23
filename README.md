@@ -867,7 +867,8 @@ Above API will be accessed in the Front - End (User Side) by React JS and Androi
 Next is FrontEnd Development using Javascript, React JS.  <br>
 Check this link for updates on Frontend Documentation.
 
-<h3>Happy Coding! </h3>
+<h3>Happy Coding! - Adios </h3>
+
 
 
 
