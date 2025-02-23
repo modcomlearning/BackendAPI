@@ -763,7 +763,7 @@ Imagine you build a Flask API on your computer. It works great, but there's a pr
 <b>Why Use PythonAnywhere?</b> <br>
 PythonAnywhere is an onlone platform that: <br>
 ✅ Keeps your API running 24/7 (Even when your computer/laptop is off).<br>
-✅ Allows your API Accessible everywhere/ANytime since Itsts ONLINE <br>
+✅ Allows your API Accessible everywhere/Anytime since Its ONLINE <br>
 ✅ Many users can access the API Backend from the Frontend - (TODO Later). <br>
 
 
@@ -807,11 +807,11 @@ Sign in with your account or create a new account if you don't have one.<br>
 
 ![alt text](image-40.png)
 
-Go to the "Web" tab on PythonAnywhere. </br>
-Click on Add a New Web Application</br>
-Follow the steps : use Latest Python and Flask</br>
-Finish creating the Web App. </br>
-NB: After creating the Web Application, still under Web Tab check the link where your app will be accessed. Please note it somewhere in a Notepad/Book <br>
+1. Go to the "Web" tab on PythonAnywhere. </br>
+2. Click on Add a New Web Application</br>
+3. Follow the steps : use Latest Python and Flask</br>
+4. Finish creating the Web App. </br>
+5. NB: After creating the Web Application, still under Web Tab check the link where your app will be accessed. Please note it somewhere in a Notepad/Book <br>
      
      https://yourusername.pythonanywhere.com/
 <br>
@@ -829,23 +829,23 @@ Run the following commands:
    ```
 
 <b>Step 10-3: Database Setup</b> </br>
-Go to the "Databases" tab on PythonAnywhere. </br>
-Create a Pssword. Please Record this password in a Notepab/Book</br>
-NB: After password creation, It displays the host and username.  Please Record this details in a Notepab/Book</br>
-Open the default database: Please Record this database name in a Notepab/Book</br>
-Create the users and product_details tables:</br>
+1. Go to the "Databases" tab on PythonAnywhere. </br>
+2. Create a Pssword. Please Record this password in a Notepab/Book</br>
+3. NB: After password creation, It displays the host and username.  Please Record these details in a Notepab/Book</br>
+4. Open the default database: Please Record this database name in a Notepab/Book</br>
+5. Create the users and product_details tables:</br>
 
 NB: the host, username, password and database names will be needed by app.py during pymysql connections, SO we need to record this details in a Notepad/Book for later use in app.py.
 
 <b>Step 10-4: Flask App Setup</b> </br>
-Go to the "Files" tab on PythonAnywhere. </br>
-Go to mysite Folder, Open flask_app.py, Copy your API code from your computer and paste it in this File. <br>
-Please replace the Database connections with the once created in step 10-3 above.Refer from ypur Notepad/Book. <br>
-Replace connections for all routes.<br>
-Save this File <br>
-while still in mysite Folder, Create a Folder named static/images. This Folder is used for images uploads<br>
-Go to "Web" tab on PythonAnywhere. and Reload the application. <br>
-Your application is Live at https://yourusername.pythonanywhere.com/ <br>
+1. Go to the "Files" tab on PythonAnywhere. </br>
+2. Go to mysite Folder, Open flask_app.py, Copy your API code from your computer and paste it in this File. <br>
+3. Please replace the Database connections with the once created in step 10-3 above.Refer from ypur Notepad/Book. <br>
+4. Replace connections for all routes.<br>
+5. Save this File <br>
+6. while still in mysite Folder, Create a Folder named static/images. This Folder is used for images uploads<br>
+7. Go to "Web" tab on PythonAnywhere. and Reload the application. <br>
+8. Your application is Live at https://yourusername.pythonanywhere.com/ <br>
 
 Your API endpoints can be accessed as:
 
