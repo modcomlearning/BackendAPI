@@ -777,9 +777,7 @@ PythonAnywhere is an onlone platform that: <br>
 Before Hosting - LOCAL: API only runs on http://127.0.0.1:5000/api/ <br>   
 After Hosting - ONLINE: API is accessible at https://yourusername.pythonanywhere.com/api/ <br>
 
-
-
-<h3>Hosting the API on Pythonanywhere</h3> <br>
+<h3>Hosting the API on Pythonanywhere</h3> 
 <b>Objective: </b> <br>
 <b>By the end of this lesson, students will: </b> <br>
 1. Learn how to set up a Flask API on PythonAnywhere.<br>
