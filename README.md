@@ -865,7 +865,7 @@ Test above endpoints in insomnia. <br>
 Above API will be accessed in the Front - End (User Side) by React JS and Android Application. <br>
 
 Next is FrontEnd Development using Javascript, React JS.  <br>
-Check Frontend Development uising React JS in below Link
+Check Frontend Development uising React JS in this Link
 https://github.com/modcomlearning/sokogarden
 
 <h3>Happy Coding! - Adios </h3>
