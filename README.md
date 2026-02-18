@@ -337,7 +337,7 @@ Then import pymysql like below.
 An endpoint in web development and APIs is a specific URL that allows you to access or interact with the API.
 i.e http://127.0.0.1:5000/api/signup    is an endpoint
 
-<!-- >
+
 Update your /api/signup route as follows.
 Below is the updated app.py
 ```python
@@ -412,6 +412,7 @@ Below API endpoint will allow users to Signin using credentials provided in /api
 
 # Define the sign in Endpoint
 
+<!-- 
 ```python
     import pymysql.cursors
     @app.route('/api/signin', methods = ['POST'])
