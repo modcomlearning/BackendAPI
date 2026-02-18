@@ -337,7 +337,7 @@ Then import pymysql like below.
 An endpoint in web development and APIs is a specific URL that allows you to access or interact with the API.
 i.e http://127.0.0.1:5000/api/signup    is an endpoint
 
-
+<!-- >
 Update your /api/signup route as follows.
 Below is the updated app.py
 ```python
@@ -868,7 +868,7 @@ Next is FrontEnd Development using Javascript, React JS.  <br>
 Check Frontend Development uising React JS in this Link
 https://github.com/modcomlearning/sokogarden
 
-<h3>Happy Coding! - Adios </h3>
+-->
 
 
 
