@@ -412,7 +412,7 @@ Below API endpoint will allow users to Signin using credentials provided in /api
 
 # Define the sign in Endpoint
 
-<!-- 
+
 ```python
     import pymysql.cursors
     @app.route('/api/signin', methods = ['POST'])
@@ -869,7 +869,6 @@ Next is FrontEnd Development using Javascript, React JS.  <br>
 Check Frontend Development uising React JS in this Link
 https://github.com/modcomlearning/sokogarden
 
--->
 
 
 
